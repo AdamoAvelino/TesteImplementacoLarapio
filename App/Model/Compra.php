@@ -5,7 +5,8 @@ namespace Larapio\App\Model;
 use Larapio\BD\Model;
 use Larapio\App\Model\ModelColection;
 
-class Compra extends Model {
+class Compra extends Model
+{
 
     private $colection = [];
     private $compraIntens;
@@ -18,7 +19,8 @@ class Compra extends Model {
      * ------------------------------------------------------------------------------------------------------------
      * @param type $dados
      */
-    public function __construct($dados = null) {
+    public function __construct($dados = null)
+    {
 
         if ($dados) {
             foreach ($dados as $propriedade => $valor) {
@@ -31,7 +33,8 @@ class Compra extends Model {
     /**
      * ------------------------------------------------------------------------------------------------------------
      */
-    public function all() {
+    public function all()
+    {
         $colunas = 'c.id, c.`data`, c.mercado, SUM(ci.valor) valor';
         $lista = $this->query->select($colunas)
                 ->from('compra c')
@@ -43,37 +46,43 @@ class Compra extends Model {
         return $this->colection = $obj->getColection();
     }
 
-    function getId() {
+    function getId()
+    {
         return $this->id;
     }
 
-    function getData($dataOrHora) {
+    function getData($dataOrHora)
+    {
         if ($dataOrHora == 'data') {
             return date('d/m/Y', strtotime($this->data));
-        }else{
+        } else {
             return date('H:i', strtotime($this->data));
         }
     }
 
-    function getMercado() {
+    function getMercado()
+    {
         return $this->mercado;
     }
 
-    function getEmbalagem() {
+    function getEmbalagem()
+    {
         return $this->embalagem;
     }
 
-    function getValor() {
+    function getValor()
+    {
         
         return number_format($this->valor, '2', ',', '');
     }
 
-    function getQuantidade() {
+    function getQuantidade()
+    {
         return $this->quantidade;
     }
 
-    function getNome() {
+    function getNome()
+    {
         return $this->nome;
     }
-
 }

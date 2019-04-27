@@ -3,7 +3,7 @@
 namespace Larapio\App\Error;
 
 /**
-*	Classe responsável por exibir erros
+*   Classe responsável por exibir erros
 */
 class Error
 {

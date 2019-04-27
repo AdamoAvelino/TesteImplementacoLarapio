@@ -1,6 +1,7 @@
 <?php
 
 //Inclui o arquivo que possui a classe de autoloader
+require_once 'variaveis.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Larapio\Http\Router;
@@ -8,12 +9,9 @@ use Larapio\Http\Request;
 use Larapio\Http\Dispatch;
 
 //Instancia a classe de autoloader
-
 //$autoloader = new Autoloader();
-
 //Registra no php para usar esse autoloader
 //$autoloader->registrar();
-
 //Configuração de rotas 
 $router = new Router();
 require_once 'rotas.php';

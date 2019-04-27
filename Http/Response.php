@@ -7,17 +7,20 @@ use Larapio\Http\Crsf;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 
-class Response {
+class Response
+{
 
     private static $objeto = [];
     private static $response = null;
     public static $ha_token;
 
-    private function __construct() {
+    private function __construct()
+    {
         
     }
 
-    public static function set($response, $key, $unico = false) {
+    public static function set($response, $key, $unico = false)
+    {
 
         self::$objeto[$key] = $response;
         self::$response = new Response();
@@ -25,7 +28,8 @@ class Response {
         //return self::$response;
     }
 
-    public static function view($view) {
+    public static function view($view)
+    {
         if (self::$objeto) {
             extract(self::$objeto);
         }
@@ -44,7 +48,8 @@ class Response {
         echo $template->render($view . '.twig', self::$objeto);
     }
 
-    private function template() {
+    private function template()
+    {
         $loader = new FilesystemLoader('view');
         $twig = new Environment($loader, [
             'debug' => true,
@@ -52,5 +57,4 @@ class Response {
         $twig->addExtension(new \Twig\Extension\DebugExtension());
         return $twig;
     }
-
 }

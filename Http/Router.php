@@ -157,8 +157,8 @@ class Router
             }
         }
 
-        if($verbo == $this->request->method){
-            if(count($this->request->variaveis_url) == 0 and count($rota->getParametros()) == 0) {
+        if ($verbo == $this->request->method) {
+            if (count($this->request->variaveis_url) == 0 and count($rota->getParametros()) == 0) {
                 return $rota;
             }
         }

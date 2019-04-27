@@ -49,9 +49,9 @@ class MontarRota
      * ----------------------------------------------------------------------<br>
      *  [Metodo que define qual controller e qual metodo será executado]
      * Recebe o segundo parametro enviado pelo metodo router do Objeto Router utiliza
-     * utiliza o explode para separar strings que serão o Controllers e o Médodo de Ação  
+     * utiliza o explode para separar strings que serão o Controllers e o Médodo de Ação
      * @param String $argumento Duas paravras delimitadas por ".(ponto)".
-     * 
+     *
      */
     public function setControllerMetodo($argumento)
     {
@@ -88,7 +88,7 @@ class MontarRota
             $nomeRota[] = $param;
         }
 
-        if(isset($nomeRota) or $argumento){
+        if (isset($nomeRota) or $argumento) {
 
             $this->nomeRota = isset($nomeRota) ? implode('.', $nomeRota) : $argumento;
             return true;

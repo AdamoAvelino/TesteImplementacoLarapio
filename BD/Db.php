@@ -32,7 +32,7 @@ class Db extends PDO
      */
     private function getConfigDb()
     {
-        $config = parse_ini_file('config.ini', true);
+        $config = parse_ini_file(CONFIG_FILE, true);
         extract($config);
         return $banco_de_dados;
 
@@ -81,5 +81,4 @@ class Db extends PDO
         return $this->lastInsertId();
 
     }
-
 }

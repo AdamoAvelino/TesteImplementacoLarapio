@@ -2,7 +2,8 @@
 
 namespace Larapio\App\Model;
 
-class ModelColection {
+class ModelColection
+{
 
     private $colection;
     private $className;
@@ -13,7 +14,8 @@ class ModelColection {
      * @param type $className
      * @param type $lista
      */
-    public function __construct($className, $lista) {
+    public function __construct($className, $lista)
+    {
         $this->className = $className;
         foreach ($lista as $objectData) {
             $this->setColection((array) $objectData);
@@ -23,7 +25,8 @@ class ModelColection {
      * ------------------------------------------------------------------------------------------------------------
      * @param type $data
      */
-    private function setColection($data) {
+    private function setColection($data)
+    {
         $model = $this->baseNameSpace . $this->className;
         $this->colection[] = new $model($data);
     }
@@ -32,8 +35,8 @@ class ModelColection {
      * ------------------------------------------------------------------------------------------------------------
      * @return type
      */
-    public function getColection() {
+    public function getColection()
+    {
         return $this->colection;
     }
-
 }

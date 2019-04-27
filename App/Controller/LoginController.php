@@ -34,7 +34,7 @@ class LoginController
     {
         $this->sessao = new Session(true);
         
-        if($request){
+        if ($request) {
             $this->request = $request;
         }
         
@@ -46,12 +46,11 @@ class LoginController
      * @return void
      */
     public function logar()
-    {        
+    {
         extract($this->request->getRequest());
         $retorno = $this->verificarUsuario(['login' => $login, 'senha' => $senha]);
 
-        if($retorno)
-        {
+        if ($retorno) {
             $this->sessao->registra();
             $this->sessao->setSession('login', $login);
             $this->sessao->setSession('senha', $senha);
@@ -81,12 +80,12 @@ class LoginController
      * @return void
      */
     public function logado()
-    {   
+    {
         // $this->sessao->destroy();
-        if($this->sessao->has('login') and $this->sessao->has('senha')){
+        if ($this->sessao->has('login') and $this->sessao->has('senha')) {
             return $this->sessao->valida();
         }
-        return false; 
+        return false;
     }
 
     public function sair()
@@ -94,5 +93,4 @@ class LoginController
         $this->sessao->destroy();
         header('Location: /login');
     }
-
 }

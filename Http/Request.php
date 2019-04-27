@@ -83,7 +83,7 @@ class Request
             $this->url = sprintf("%s.%s", array_shift($variaveis_url), array_shift($variaveis_url));
             $this->trataUrl();
 
-            $this->variaveis_url = array_filter($variaveis_url, function($valor) {
+            $this->variaveis_url = array_filter($variaveis_url, function ($valor) {
                 return ($valor === '0' or $valor);
             });
         }
@@ -136,7 +136,7 @@ class Request
 
     /**
      * ---------------------------------------------------------------------<br>
-     * 
+     *
      */
     private function trataUrl()
     {
@@ -159,17 +159,17 @@ class Request
     }
 
     /**
-     * ---------------------------------------------------------------------<br> 
+     * ---------------------------------------------------------------------<br>
      * [Retorna os parametros os parametros submetidos pelo formulario que tenha
      * sido configurado com o method POST, validada  com os parametros
      * configurados na chamada da rota]
      * @return type
      */
-    public function getRequest( $exceto = [])
+    public function getRequest($exceto = [])
     {
         $request = $this->request;
         
-        if($exceto) {
+        if ($exceto) {
             
             
             foreach ($exceto as $valor) {
@@ -218,7 +218,7 @@ class Request
     }
 
     /**
-     * ---------------------------------------------------------------------<br> 
+     * ---------------------------------------------------------------------<br>
      * @param type $nomelInput
      * @return type
      */
@@ -229,7 +229,7 @@ class Request
     }
 
     /**
-     * ---------------------------------------------------------------------<br> 
+     * ---------------------------------------------------------------------<br>
      * @param type $nomeInput
      * @return type
      */
@@ -238,5 +238,4 @@ class Request
         return $this->arquivo[$nomeInput];
 
     }
-
 }

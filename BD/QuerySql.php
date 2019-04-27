@@ -4,7 +4,8 @@ namespace Larapio\BD;
 
 use Larapio\BD\Db;
 
-class QuerySql {
+class QuerySql
+{
 
     /**
      * É Alimentado de forma concatenada para retorna a string sql fromatada
@@ -82,7 +83,8 @@ class QuerySql {
      */
     const OPERADORES = ['IN', 'NOT IN'];
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->bd = new Db();
     }
 
@@ -130,7 +132,8 @@ class QuerySql {
      *
      *
      */
-    public function __call($name, $arguments) {
+    public function __call($name, $arguments)
+    {
         $this->nome = strtoupper($name);
 
         $this->argumento = $arguments;
@@ -146,7 +149,8 @@ class QuerySql {
      *
      * @return boolean
      */
-    private function runSql() {
+    private function runSql()
+    {
         if ($this->nome == 'VALUES') {
             $this->implodeString($this->nome);
             $this->argumento[0] = $this->sqlInsert($this->argumento[0]);
@@ -176,7 +180,8 @@ class QuerySql {
      * ---------------------------------------------------------------------<br>
      * @return boolean
      */
-    private function queryArray() {
+    private function queryArray()
+    {
 
         if (in_array($this->nome, self::OPERACOES)) {
             foreach ($this->argumento as $argumento) {
@@ -203,7 +208,8 @@ class QuerySql {
      * @param type $arg
      * @return type
      */
-    private function sqlInsert(array $arg) {
+    private function sqlInsert(array $arg)
+    {
         $colunasInto = implode(', ', array_keys($arg));
         $this->sql .= " (" . $colunasInto . ")";
         return array_values($arg);
@@ -212,7 +218,8 @@ class QuerySql {
     /**
      * ---------------------------------------------------------------------<br>
      */
-    private function sqlUpdate() {
+    private function sqlUpdate()
+    {
         $bind = (array) $this->montarBind(array_values($this->argumento[0]));
         $sql = $this->bindString($bind);
         $this->sql .= " " . $sql;
@@ -224,7 +231,8 @@ class QuerySql {
      * @param type $argumento
      * @return type
      */
-    private function verificarOperacao(array $argumento) {
+    private function verificarOperacao(array $argumento)
+    {
 
         $this->inNot = (count($argumento) > 1 and in_array(strtoupper($argumento[1]), self::OPERADORES));
 
@@ -243,7 +251,8 @@ class QuerySql {
      * @param type $operacoes
      * @return type
      */
-    private function montarBind($operacoes) {
+    private function montarBind($operacoes)
+    {
 
         $this->operacaoCriteria = isset($operacoes[1]) ? strtoupper($operacoes[1]) : '';
 
@@ -275,7 +284,8 @@ class QuerySql {
      * @param type $operacoes
      * @return boolean
      */
-    private function bindString(array $operacoes) {
+    private function bindString(array $operacoes)
+    {
         $atribuicaoBind = [];
         if (is_array($operacoes) and $this->nome != 'SET') {
 
@@ -312,7 +322,8 @@ class QuerySql {
      * @param type $dado
      * @return type
      */
-    private function formatarClausula($dado) {
+    private function formatarClausula($dado)
+    {
         if (is_numeric($dado)) {
             return $dado;
         }
@@ -324,11 +335,13 @@ class QuerySql {
      * ---------------------------------------------------------------------<br>
      * @param type $operador
      */
-    private function implodeString($operador) {
+    private function implodeString($operador)
+    {
         $this->stringImplode = ($operador == 'VALUES' or in_array($operador, self::OPERADORES));
     }
 
-    public function getSql($ignoreFech = true, $debug = false) {
+    public function getSql($ignoreFech = true, $debug = false)
+    {
         $sql = $this->sql;
         $this->sql = '';
         $dados = $this->dados;
@@ -340,5 +353,4 @@ class QuerySql {
 
         return $this->bd->executar($sql, $ignoreFech, $dados);
     }
-
 }

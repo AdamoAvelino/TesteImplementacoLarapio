@@ -48,7 +48,7 @@ class Dispatch
      */
     public function run()
     {
-        if(is_callable($this->router->getController())){
+        if (is_callable($this->router->getController())) {
             $callback = $this->router->getController();
             $callback();
             return true;
