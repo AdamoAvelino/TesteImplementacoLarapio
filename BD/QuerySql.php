@@ -4,8 +4,7 @@ namespace Larapio\BD;
 
 use Larapio\BD\Db;
 
-class QuerySql
-{
+class QuerySql {
 
     /**
      * É Alimentado de forma concatenada para retorna a string sql fromatada
@@ -83,10 +82,8 @@ class QuerySql
      */
     const OPERADORES = ['IN', 'NOT IN'];
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->bd = new Db();
-
     }
 
     /** Constroi a query de acordo com um metodo não declarado na classe.
@@ -133,15 +130,13 @@ class QuerySql
      *
      *
      */
-    public function __call($name, $arguments)
-    {
+    public function __call($name, $arguments) {
         $this->nome = strtoupper($name);
 
         $this->argumento = $arguments;
 
         $this->runSql();
         return $this;
-
     }
 
     /** Inicia a Montagem da Query, apatir deste metodo são tomadas todas as
@@ -151,8 +146,7 @@ class QuerySql
      *
      * @return boolean
      */
-    private function runSql()
-    {
+    private function runSql() {
         if ($this->nome == 'VALUES') {
             $this->implodeString($this->nome);
             $this->argumento[0] = $this->sqlInsert($this->argumento[0]);
@@ -175,7 +169,6 @@ class QuerySql
         $this->queryArray();
 
         return true;
-
     }
 
     /**
@@ -183,8 +176,7 @@ class QuerySql
      * ---------------------------------------------------------------------<br>
      * @return boolean
      */
-    private function queryArray()
-    {
+    private function queryArray() {
 
         if (in_array($this->nome, self::OPERACOES)) {
             foreach ($this->argumento as $argumento) {
@@ -198,13 +190,12 @@ class QuerySql
                     return true;
                 }
 
-                $this->bindString( (array) $this->montarBind($argumento));
+                $this->bindString((array) $this->montarBind($argumento));
             }
 
             $this->sql .= ' ( ' . $this->criteria[0] . ' ) ';
             $this->criteria = null;
         }
-
     }
 
     /**
@@ -212,23 +203,19 @@ class QuerySql
      * @param type $arg
      * @return type
      */
-    private function sqlInsert(array $arg)
-    {
+    private function sqlInsert(array $arg) {
         $colunasInto = implode(', ', array_keys($arg));
         $this->sql .= " (" . $colunasInto . ")";
         return array_values($arg);
-
     }
 
     /**
      * ---------------------------------------------------------------------<br>
      */
-    private function sqlUpdate()
-    {
+    private function sqlUpdate() {
         $bind = (array) $this->montarBind(array_values($this->argumento[0]));
         $sql = $this->bindString($bind);
         $this->sql .= " " . $sql;
-
     }
 
     /**
@@ -237,8 +224,7 @@ class QuerySql
      * @param type $argumento
      * @return type
      */
-    private function verificarOperacao(array $argumento)
-    {
+    private function verificarOperacao(array $argumento) {
 
         $this->inNot = (count($argumento) > 1 and in_array(strtoupper($argumento[1]), self::OPERADORES));
 
@@ -250,7 +236,6 @@ class QuerySql
         }
 
         return $argumento;
-
     }
 
     /**
@@ -258,8 +243,7 @@ class QuerySql
      * @param type $operacoes
      * @return type
      */
-    private function montarBind($operacoes)
-    {
+    private function montarBind($operacoes) {
 
         $this->operacaoCriteria = isset($operacoes[1]) ? strtoupper($operacoes[1]) : '';
 
@@ -283,7 +267,6 @@ class QuerySql
         }
 
         return $operacoes;
-
     }
 
     /**
@@ -292,8 +275,7 @@ class QuerySql
      * @param type $operacoes
      * @return boolean
      */
-    private function bindString( array $operacoes)
-    {
+    private function bindString(array $operacoes) {
         $atribuicaoBind = [];
         if (is_array($operacoes) and $this->nome != 'SET') {
 
@@ -323,7 +305,6 @@ class QuerySql
         }
 
         return true;
-
     }
 
     /**
@@ -331,35 +312,33 @@ class QuerySql
      * @param type $dado
      * @return type
      */
-    private function formatarClausula($dado)
-    {
+    private function formatarClausula($dado) {
         if (is_numeric($dado)) {
             return $dado;
         }
 
         return "$dado";
-
     }
 
     /**
      * ---------------------------------------------------------------------<br>
      * @param type $operador
      */
-    private function implodeString($operador)
-    {
+    private function implodeString($operador) {
         $this->stringImplode = ($operador == 'VALUES' or in_array($operador, self::OPERADORES));
-
     }
 
-    public function getSql($ignoreFech = true)
-    {
+    public function getSql($ignoreFech = true, $debug = false) {
         $sql = $this->sql;
         $this->sql = '';
         $dados = $this->dados;
         $this->dados = [];
-        // var_dump($sql);
-        return $this->bd->executar($sql, $ignoreFech, $dados);
 
+        if ($debug) {
+            echo "<p style='max-width: 50%; margin-left: 30px'>$sql</p>";
+        }
+
+        return $this->bd->executar($sql, $ignoreFech, $dados);
     }
 
 }

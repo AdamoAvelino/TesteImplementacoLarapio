@@ -8,14 +8,12 @@ use Larapio\App\Model\ModelColection;
 class Compra extends Model {
 
     private $colection = [];
+    private $compraIntens;
     private $id;
     private $data;
     private $mercado;
-    private $embalagem;
     private $valor;
-    private $quantidade;
-    private $nome;
-    
+
     /**
      * ------------------------------------------------------------------------------------------------------------
      * @param type $dados
@@ -29,25 +27,53 @@ class Compra extends Model {
         }
         parent::__construct();
     }
-    
+
     /**
      * ------------------------------------------------------------------------------------------------------------
      */
     public function all() {
-        $colunas = 'c.id, c.`data`, c.mercado, ci.embalagem, ci.valor, ci.embalagem, ci.quantidade,ig.nome, un.nome';
+        $colunas = 'c.id, c.`data`, c.mercado, SUM(ci.valor) valor';
         $lista = $this->query->select($colunas)
                 ->from('compra c')
                 ->join('compra_item ci')
                 ->on(['ci.id_compra', '=', 'c.id'])
-                ->join('ingrediente ig')
-                ->on(['ig.id', '=', 'ci.id_ingrediente'])
-                ->join('unidade_medida un')
-                ->on(['un.id', '=', 'ig.unidade_medida'])
+                ->group_by('c.id')
                 ->getSql(false);
         $obj = new ModelColection('compra', $lista);
-        $this->colection = $obj->getColection();
-        var_dump($this->colection);
-        die();
+        return $this->colection = $obj->getColection();
+    }
+
+    function getId() {
+        return $this->id;
+    }
+
+    function getData($dataOrHora) {
+        if ($dataOrHora == 'data') {
+            return date('d/m/Y', strtotime($this->data));
+        }else{
+            return date('H:i', strtotime($this->data));
+        }
+    }
+
+    function getMercado() {
+        return $this->mercado;
+    }
+
+    function getEmbalagem() {
+        return $this->embalagem;
+    }
+
+    function getValor() {
+        
+        return number_format($this->valor, '2', ',', '');
+    }
+
+    function getQuantidade() {
+        return $this->quantidade;
+    }
+
+    function getNome() {
+        return $this->nome;
     }
 
 }
