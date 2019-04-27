@@ -1,0 +1,45 @@
+{% set modais = { 1 : { 'id_modal' : 'excluir', 'id_form': 'excluir-categoria', 'mensagem' : 'Tem Certeza que deseja excluir a Categoria Manufaturado'} } %}
+{% extends 'base.twig'%}
+{% block title %}Incluir Categoria Manufaturado{% endblock %}
+{% block content %}
+<div class="row mt-5">
+   <div class="col-md-12">
+     <h2>Inclusão de Categoria Manufaturado</h2>
+   </div> 
+  <div class="col-md-4">
+    <form action="{{ categoria_manufaturado.id ? '/categoria_manufaturado/alterar'  : '/categoria_manufaturado/salvar' }}" method='POST'>
+      <input type="hidden" name='token' value="{{ crsf.getCrsf() }}" name="id">
+      <div class="form-group">
+        <label for="">Nome</label>
+        <input type="text" value="{{ categoria_manufaturado.nome }}" name="nome" id="" class="form-control"
+          placeholder="Inclua o nome da categoria manufaturado" aria-describedby="helpId">
+          <small id="helpId" class="form-text text-muted">Exemplo: ml(mililitro), g(grama), u(unidade) </small>
+      </div>
+      <button type="submit" class='btn btn-success'><i class="fas fa-save"></i> Salvar</button>
+      {% if categoria_manufaturado.id %}
+        <input type="hidden" value="{{ categoria_manufaturado.id }}" name="id">
+      {% endif %}
+    </form>
+    
+  </div>
+  
+  {% if categoria_manufaturado.id %}
+    <div class='offset-md-2 col-md-4'>
+      <h3>Controles</h3>
+      <hr>
+      <form action="/categoria_manufaturado/excluir" method="POST" id='excluir-categoria'>
+          <input type="hidden" name='token' value="{{ crsf.getCrsf() }}">
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#excluir">
+              Excluir
+          </button>
+        <input type="hidden" value="{{ categoria_manufaturado.id }}" name="id" >
+      </form>
+    </div>
+  {% endif %}
+  
+</div>
+
+{% endblock %}
+{% block scripts %}
+  <script src="/view/assets/js/funcoes.js"></script>
+{% endblock %}

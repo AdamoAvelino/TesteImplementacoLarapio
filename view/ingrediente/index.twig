@@ -1,0 +1,50 @@
+{% extends 'base.twig'%}
+{% block title %}Ingredientes{% endblock %}
+{% block content %}
+<div class="row mt-2">
+  <div class="col-md-4">
+    <h2>Ingredientes</h2>
+    <form action="/incluir_ingrediente" method="POST">
+      <button class='btn btn-success' type='submit'>
+        <i class="fas fa-plus-square"></i> Incluir
+      </button>
+    </form>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    {% if ingredientes %}
+    <table class="table table-hover table-striped table-sm shadow table-bordered">
+      <thead class='thead-dark'>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Unidade de Medida</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ingrediente in ingredientes %}
+        <tr>
+          <th scope="row">
+            <a href='/editar_ingrediente/{{ ingrediente.id }}'>
+            {{ ingrediente.id }}
+            </a>
+          </th>
+          <td>{{ ingrediente.nome }}</td>
+          <td>{{ ingrediente.unidade_medida }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Ops!</strong> Não Há Nenhum Registro de Ingredientes
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

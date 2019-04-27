@@ -1,0 +1,66 @@
+{% extends 'base.twig'%}
+{% block title %}Categoria Manufaturado{% endblock %}
+{% block content %}
+    <div class="row mt-3 ">
+        <div class="col-md-4 ">
+            <div class='shadow p-3'>
+                <h4><span class='badge badge-secondary'>Controle</span></h4>
+                <form action="/categoria_manufaturado/incluir" method="POST">
+                    <button class='btn btn-success btn-sm' type='submit' title='Incluir Categoria de Manufaturados'>
+                        <i class="fas fa-plus-square"></i>
+                    </button>
+                </form>
+                
+            </div>
+        </div>
+        <div class='col-md-8'>
+            <div class='shadow p-3'>
+                <h4><span class='badge badge-secondary'>Filtro</span></h4>
+                <form action='?' method='post'>
+                    <div class='row'>
+                        <div class='col-md-3 form-group'>
+                            <input type="text" value="" name="nome" id="" class="form-control form-control-sm"
+                                   placeholder="Nome">
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+        <hr>
+            <h3 class='text-center'>Categoria Manufaturado</h3>
+            {% if categoria_manufaturado %}
+                <table class="table table-hover table-striped table-sm shadow table-bordered">
+                    <thead class='thead-dark '>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nome</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for categoria in categoria_manufaturado %}
+                            <tr>
+                                <th scope="row">
+                                    <a href='/categoria_manufaturado/consultar/{{ categoria.id }}'>
+                                        {{ categoria.id }}
+                                    </a>
+                                </th>
+                                <td>{{ categoria.nome }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Ops!</strong> Não Há Nenhum Registro de Categoria Manufaturado
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

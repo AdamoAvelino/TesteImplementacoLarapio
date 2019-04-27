@@ -1,0 +1,45 @@
+{% set modais = { 1 : { 'id_modal' : 'excluir', 'id_form': 'excluir-medida', 'mensagem' : 'Tem Certeza que deseja excluir a Unidade de medida'} } %}
+{% extends 'base.twig'%}
+{% block title %}Incluir Unidade de Medida{% endblock %}
+{% block content %}
+<div class="row mt-5">
+   <div class="col-md-12">
+     <h2>Inclusão de Unidade de Medida</h2>
+   </div> 
+  <div class="col-md-4">
+    <form action="{{ unidade_medida.id ? '/unidade_medida/alterar'  : '/unidade_medida/salvar' }}" method='POST'>
+      <input type="hidden" name='token' value="{{ crsf.getCrsf() }}" name="id">
+      <div class="form-group">
+        <label for="">Nome</label>
+        <input type="text" value="{{ unidade_medida.nome }}" name="nome" id="" class="form-control"
+          placeholder="Inclua o nome da unidade medida" aria-describedby="helpId">
+          <small id="helpId" class="form-text text-muted">Exemplo: ml(mililitro), g(grama), u(unidade) </small>
+      </div>
+      <button type="submit" class='btn btn-success'><i class="fas fa-save"></i> Salvar</button>
+      {% if unidade_medida.id %}
+        <input type="hidden" value="{{ unidade_medida.id }}" name="id">
+      {% endif %}
+    </form>
+    
+  </div>
+  
+  {% if unidade_medida.id %}
+    <div class='offset-md-2 col-md-4'>
+      <h3>Controles</h3>
+      <hr>
+      <form action="/unidade_medida/excluir" method="POST" id='excluir-medida'>
+          <input type="hidden" name='token' value="{{ crsf.getCrsf() }}">
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#excluir">
+              Excluir
+          </button>
+        <input type="hidden" value="{{ unidade_medida.id }}" name="id" >
+      </form>
+    </div>
+  {% endif %}
+  
+</div>
+
+{% endblock %}
+{% block scripts %}
+  <script src="/view/assets/js/funcoes.js"></script>
+{% endblock %}

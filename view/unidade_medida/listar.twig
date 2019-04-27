@@ -1,0 +1,48 @@
+{% extends 'base.twig'%}
+{% block title %}Unidade de Medida{% endblock %}
+{% block content %}
+<div class="row mt-2">
+  <div class="col-md-4">
+    <h2>Unidade de Medida</h2>
+    <form action="/unidade_medida/incluir" method="POST">
+      <button class='btn btn-success' type='submit'>
+        <i class="fas fa-plus-square"></i> Incluir
+      </button>
+    </form>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    {% if unidade_medida %}
+    <table class="table table-hover table-striped table-sm table-bordered shadow">
+      <thead class='thead-dark'>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nome</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for unidade in unidade_medida %}
+        <tr>
+          <th scope="row">
+            <a href='/unidade_medida/consultar/{{ unidade.id }}'>
+            {{ unidade.id }}
+            </a>
+          </th>
+          <td>{{ unidade.nome }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Ops!</strong> Não Há Nenhum Registro de Unidade de Medida
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
