@@ -1,34 +1,59 @@
-{% set unidade = {1 : 'g', 2 : 'ml', 3 : 'un'} %}
+{% set modais = 
+    { 1 : {  'id_modal' : 'excluir', 
+                'id_form': 'excluir-ingrediente', 
+                'mensagem' : 'Tem Certeza que deseja excluir o Ingrediente'
+            } 
+    } 
+%}
 
 {% extends 'base.twig'%}
 {% block title %}Incluir Ingrdiente{% endblock %}
 {% block content %}
 
-<div class="row mt-5">
-   <div class="col-md-12">
-     <h2>Inclusão de Ingredientes</h2>
-   </div> 
-  <div class="col-md-4">
-    <form action="/salvar_ingrediente" method='POST'>
-      <div class="form-group">
-        <label for="">Nome</label>
-        <input type="text" value="{{ ingrediente.nome }}" name="nome" id="" class="form-control"
-          placeholder="Inclua o nome do ingrediente" aria-describedby="helpId">
-      </div>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h2>Inclusão de Ingredientes</h2>
+        </div> 
+        <div class="col-md-4">
+            <form action="{{ ingrediente.id ? '/ingrediente/alterar' : '/ingrediente/salvar' }}" method='POST'>
+                <input type="hidden" value="{{ crsf.getCrsf() }}" name="token">
+                <input type="hidden" value="{{  ingrediente.id }}" name="id">
+                <div class="form-group">
+                    <label for="">Nome</label>
+                    <input type="text" value="{{ ingrediente.nome }}" name="nome" class="form-control"
+                           placeholder="Inclua o nome do ingrediente" aria-describedby="helpId">
+                </div>
 
-      <div class="form-group">
-        <label for="">Unidade de Medida</label>
-        <select name="unidade_medida" class='form-control'>
-          <option value="0">Selecione</option>
-          {% for key, un in unidade %}
-          <option {{ key == ingrediente.unidade_medida ? 'selected' : '' }} value="{{ key }}">{{ un }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <button type="submit" class='btn btn-success'><i class="fas fa-save"></i> Salvar</button>
-    </form>
+                <div class="form-group">
+                    <label for="">Unidade de Medida</label>
+                    <select name="unidade_medida" class='form-control'>
+                        <option value="0">Selecione</option>
+                        {% for  un in unidade %}
+                            <option {{ un.id == ingrediente.unidade_medida ? 'selected' : '' }} value="{{ un.id }}">{{ un.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class='btn btn-success'><i class="fas fa-save"></i> Salvar</button>
+            </form>
 
-  </div>
+        </div>
 
-</div>
+        {% if ingrediente.id %}
+            <div class='offset-md-2 col-md-4'>
+                <h3>Controles</h3>
+                <hr>
+                <form action="/ingrediente/excluir" method="POST" id='excluir-ingrediente'>
+                    <input type="hidden" name='token' value="{{ crsf.getCrsf() }}">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#excluir">
+                        Excluir
+                    </button>
+                    <input type="hidden" value="{{ ingrediente.id }}" name="id" >
+                </form>
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="/view/assets/js/funcoes.js"></script>
 {% endblock %}

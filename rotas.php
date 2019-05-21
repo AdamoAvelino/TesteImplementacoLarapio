@@ -9,8 +9,13 @@ $router->get('/', function(){
 //--------------------------------------------------------------------------
 // Rotas para igredientes
 $router->get('/ingredientes', 'IngredienteController.index');
-$router->post('/incluir_ingrediente', 'IngredienteController.incluir');
-$router->post('/salvar_ingrediente', 'IngredienteController.salvar_ingrediente');
+$router->get('/ingrediente/editar/{id}', 'IngredienteController.editar');
+$router->get('/ingrediente/ordenacao/{filtros}/{coluna}/{ordenacao}', 'IngredienteController.ordenar');
+$router->post('/ingrediente/incluir', 'IngredienteController.incluir');
+$router->post('/ingrediente/salvar', 'IngredienteController.salvar');
+$router->post('/ingrediente/alterar', 'IngredienteController.alterar');
+$router->post('/ingrediente/excluir', 'IngredienteController.excluir');
+$router->post('/ingrediente/buscar', 'IngredienteController.buscar');
 
 //--------------------------------------------------------------------------
 //Rotas para unidade de medida

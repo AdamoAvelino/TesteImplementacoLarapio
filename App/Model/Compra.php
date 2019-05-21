@@ -45,12 +45,20 @@ class Compra extends Model
         $obj = new ModelColection('compra', $lista);
         return $this->colection = $obj->getColection();
     }
-
+    
+    /**
+     * ------------------------------------------------------------------------------------------------------------
+     * @return type
+     */
     function getId()
     {
         return $this->id;
     }
-
+    /**
+     * ------------------------------------------------------------------------------------------------------------
+     * @param type $dataOrHora
+     * @return type
+     */
     function getData($dataOrHora)
     {
         if ($dataOrHora == 'data') {
@@ -60,27 +68,46 @@ class Compra extends Model
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------------------------------------
+     * @return type
+     */
     function getMercado()
     {
         return $this->mercado;
     }
+    
+    /**
+     * ------------------------------------------------------------------------------------------------------------
+     * @return type
+     */
 
     function getEmbalagem()
     {
         return $this->embalagem;
     }
-
+    /**
+     * ------------------------------------------------------------------------------------------------------------
+     * @return type
+     */
     function getValor()
     {
         
         return number_format($this->valor, '2', ',', '');
     }
-
+    /**
+     * ------------------------------------------------------------------------------------------------------------
+     * @return type
+     */
     function getQuantidade()
     {
         return $this->quantidade;
     }
-
+    
+    /**
+     * ------------------------------------------------------------------------------------------------------------
+     * @return type]
+     */
     function getNome()
     {
         return $this->nome;

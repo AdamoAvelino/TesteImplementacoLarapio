@@ -109,12 +109,14 @@ class QuerySql
      * duas posições satisfaz o array:
      * [coluna, (IS NULL | IS NOT NULL)]
      *
-     * As operações lógicas (critérias), também pode serem feitas de forma isolada,
+     * As operações lógicas (critérias), também podem ser feitas de forma isolada,
      * assim compreendemos o caso: ((coluna1 > 3 or coluna2 = 'string') AND coluna3 IS NULL)
      *
      * Para construção desta clausula com criterias isoladas é necessário que haja
      * mais de um array como argumentos com a ultima posição declarando uma das
      * constant OP_OR ou OP_AND
+     * <strong><i>Exemplo:</i></strong> where|ON...([coluna, operador, valor], [coluna, operador, valor], AND|OR)
+     * OU where|ON...([[coluna, operador, valor], [coluna, operador, valor], AND|OR])
      *
      * <b> Metodos VALUES e SET </b>
      *
@@ -170,7 +172,7 @@ class QuerySql
             return true;
         }
 
-        $this->queryArray();
+        $this->queryArray($this->argumento);
 
         return true;
     }
@@ -180,12 +182,17 @@ class QuerySql
      * ---------------------------------------------------------------------<br>
      * @return boolean
      */
-    private function queryArray()
+    private function queryArray($argumentos)
     {
 
         if (in_array($this->nome, self::OPERACOES)) {
-            foreach ($this->argumento as $argumento) {
-
+            foreach ($argumentos as $argumento) {
+                
+                if (is_array($argumento[0])) {
+                    $this->queryArray($argumento);
+                    return true;
+                }
+                
                 $argumento = $this->verificarOperacao($argumento);
 
                 if (is_string($argumento)) {
@@ -231,7 +238,7 @@ class QuerySql
      * @param type $argumento
      * @return type
      */
-    private function verificarOperacao(array $argumento)
+    private function verificarOperacao($argumento)
     {
 
         $this->inNot = (count($argumento) > 1 and in_array(strtoupper($argumento[1]), self::OPERADORES));

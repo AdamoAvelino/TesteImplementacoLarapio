@@ -1,20 +1,21 @@
 -- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           5.7.25-0ubuntu0.16.04.2 - (Ubuntu)
+-- Versão do servidor:           5.7.26-0ubuntu0.16.04.1 - (Ubuntu)
 -- OS do Servidor:               Linux
--- HeidiSQL Versão:              9.3.0.4984
+-- HeidiSQL Versão:              10.1.0.5464
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
 
 -- Copiando estrutura do banco de dados para laribolo
 DROP DATABASE IF EXISTS `laribolo`;
 CREATE DATABASE IF NOT EXISTS `laribolo` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `laribolo`;
-
 
 -- Copiando estrutura para tabela laribolo.categoria_manufaturado
 DROP TABLE IF EXISTS `categoria_manufaturado`;
@@ -22,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `categoria_manufaturado` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela laribolo.categoria_manufaturado: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `categoria_manufaturado` DISABLE KEYS */;
@@ -31,7 +32,6 @@ INSERT INTO `categoria_manufaturado` (`id`, `nome`) VALUES
 INSERT INTO `categoria_manufaturado` (`id`, `nome`) VALUES
 	(2, 'Bolo de Pote Massa Escura ');
 /*!40000 ALTER TABLE `categoria_manufaturado` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela laribolo.cidade
 DROP TABLE IF EXISTS `cidade`;
@@ -11176,7 +11176,6 @@ INSERT INTO `cidade` (`id`, `cidade`, `id_uf`) VALUES
 	(5564, 'Xambioá', 27);
 /*!40000 ALTER TABLE `cidade` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela laribolo.cliente
 DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE IF NOT EXISTS `cliente` (
@@ -11191,9 +11190,9 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   PRIMARY KEY (`id`),
   KEY `id_endereco.cliente-endereco.id` (`id_endereco`),
   CONSTRAINT `id_endereco.cliente-endereco.id` FOREIGN KEY (`id_endereco`) REFERENCES `endereco` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela laribolo.cliente: ~99 rows (aproximadamente)
+-- Copiando dados para a tabela laribolo.cliente: ~141 rows (aproximadamente)
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
 INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
 	(2, 'Julio Kaique Barros', 'juliokaiquebarros..juliokaiquebarros@futureteeth.com.br', 6, '1126022849', '11991534608', 2147483647, 410514032);
@@ -11393,8 +11392,107 @@ INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celula
 	(100, 'Cauê Pedro Filipe Campos', 'cauepedrofilipecampos_@fictor.com.br', 104, '1128118524', '11995854112', 2147483647, 111153086);
 INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
 	(101, 'Henry Cauã Luan Lima', 'henrycaualuanlima_@agenciaph.com', 105, '1129177348', '11988597237', 2147483647, 256076194);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(102, 'Jorge Bento Arthur Moraes', 'jjorgebentoarthurmoraes@vegacon.com.br', 106, '1135154673', '11984896642', 2147483647, 286571079);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(103, 'Augusto Benjamin Heitor Aragão', 'augustobenjaminheitoraragao_@iacit.com.br', 107, '1126544758', '11984151200', 2147483647, 117423956);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(104, 'Mateus Gael Baptista', 'mmateusgaelbaptista@techdomus.com.br', 108, '1136350826', '11995736425', 2147483647, 457482138);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(105, 'Otávio Thales Gael Fernandes', 'ootaviothalesgaelfernandes@uniara.com.br', 109, '1135985185', '11981840008', 2147483647, 150603186);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(106, 'Danilo Marcos Moreira', 'ddanilomarcosmoreira@viasegbrasil.com.br', 110, '1136680759', '11983001224', 2147483647, 336731991);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(107, 'Marcos Vinicius Antonio Bernardo Silveira', 'mmarcosviniciusantoniobernardosilveira@buzatto.pro', 111, '1125311902', '11997889757', 2147483647, 213196621);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(108, 'Renan Julio Alves', 'renanjulioalves..renanjulioalves@iaru.com.br', 112, '1135276438', '11995240223', 2147483647, 363477007);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(109, 'Murilo Bento Almada', 'mmurilobentoalmada@truran.com.br', 113, '1135011099', '11984341193', 2147483647, 133269024);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(110, 'Matheus Gustavo Cauã Caldeira', 'matheusgustavocauacaldeira_@mtc.eng.br', 114, '1125540698', '11991510968', 2147483647, 389503575);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(111, 'Thomas Rodrigo Pires', 'thomasrodrigopires-98@tvglobo.com.br', 115, '1136586633', '11989673587', 2147483647, 507921793);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(112, 'Nicolas Heitor Novaes', 'nicolasheitornovaes_@reval.net', 116, '1136377576', '11994625035', 2147483647, 397768588);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(113, 'Carlos Benício Heitor Porto', 'carlosbenicioheitorporto_@quimicaindaiatuba.com.br', 117, '1135853118', '11993894673', 2147483647, 455657671);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(114, 'Breno Yuri Benedito Viana', 'brenoyuribeneditoviana..brenoyuribeneditoviana@live.com', 118, '1135128103', '11989972210', 2147483647, 497187917);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(115, 'Lucas Tomás Cavalcanti', 'lucastomascavalcanti-73@alvesbarcelos.com.br', 119, '1127259834', '11998205305', 2147483647, 219011291);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(116, 'Henrique Fábio João Lima', 'henriquefabiojoaolima..henriquefabiojoaolima@klipvirtual.com.br', 120, '1135598364', '11996413769', 2147483647, 254725302);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(117, 'Alexandre Bruno de Paula', 'alexandrebrunodepaula_@ime.unicamp.br', 121, '1127200974', '11984228689', 2147483647, 345222623);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(118, 'Daniel Victor Duarte', 'danielvictorduarte..danielvictorduarte@way2goidiomas.com.br', 122, '1127553429', '11985733537', 2147483647, 292753299);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(119, 'Juan Pedro Henrique Nathan Almeida', 'juanpedrohenriquenathanalmeida-76@knowconsulting.com.br', 123, '1135530862', '11982601373', 2147483647, 286341682);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(120, 'Lucas Igor Fernando da Rocha', 'lucasigorfernandodarocha..lucasigorfernandodarocha@vigaconstrucao.com.br', 124, '1138296391', '11987551978', 2147483647, 213215494);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(121, 'Igor Lucca João Ribeiro', 'igorluccajoaoribeiro..igorluccajoaoribeiro@jeffersonbarroso.com.br', 125, '1139537480', '11998913590', 2147483647, 447054557);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(122, 'Breno Severino Thomas Rezende', 'brenoseverinothomasrezende_@tricoproducts.com.br', 126, '1136800347', '11981252470', 2147483647, 158693449);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(123, 'Enzo Martin Bernardo Vieira', 'eenzomartinbernardovieira@profemme.com.br', 127, '1127846957', '11995883393', 2147483647, 265913767);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(124, 'Antonio Felipe Carvalho', 'antoniofelipecarvalho..antoniofelipecarvalho@aedu.com', 128, '1126680839', '11984810333', 2147483647, 107443867);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(125, 'Luís Raul Ricardo Costa', 'luisraulricardocosta-93@unimedrio.com.br', 129, '1126849983', '11987911490', 2147483647, 402888601);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(126, 'Kauê Thomas Baptista', 'kauethomasbaptista_@academiagolf.com.br', 130, '1136688443', '11994293755', 2147483647, 479631773);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(127, 'Breno Thomas Calebe Jesus', 'brenothomascalebejesus..brenothomascalebejesus@obrativaengenharia.com.br', 131, '1129143599', '11992140976', 2147483647, 417400809);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(128, 'Kevin Vicente Sales', 'kevinvicentesales..kevinvicentesales@vcp.com.br', 132, '1127457957', '11999163348', 2147483647, 183473814);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(129, 'Caio Miguel Kauê Santos', 'ccaiomiguelkauesantos@megamega.com.br', 133, '1139616368', '11989356986', 2147483647, 304732242);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(130, 'Manuel Sérgio da Rosa', 'manuelsergiodarosa..manuelsergiodarosa@riobc.com.br', 134, '1125061118', '11994756890', 2147483647, 358108469);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(131, 'Francisco Bento Cavalcanti', 'franciscobentocavalcanti__franciscobentocavalcanti@inbox.com', 135, '1138974124', '11992521505', 2147483647, 302549626);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(132, 'Leandro Levi Alves', 'lleandrolevialves@redex.com.br', 136, '1139194973', '11996387430', 2147483647, 470926879);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(133, 'Gustavo Thiago da Mota', 'ggustavothiagodamota@ynail.com.br', 137, '1129135493', '11993242722', 2147483647, 428470932);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(134, 'Daniel Lorenzo Porto', 'daniellorenzoporto..daniellorenzoporto@lavorosjc.com.br', 138, '1125990117', '11985996578', 2147483647, 408169588);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(135, 'Gustavo Ryan Nelson Aparício', 'gustavoryannelsonaparicio..gustavoryannelsonaparicio@kascher.com.br', 139, '1139937228', '11991981517', 2147483647, 219220761);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(136, 'Noah Sebastião Assunção', 'noahsebastiaoassuncao..noahsebastiaoassuncao@centrovias.com.br', 140, '1136887893', '11984064317', 2147483647, 113506545);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(137, 'Carlos Benício Erick Nogueira', 'carlosbenicioericknogueira-84@wizardararaquara.com.br', 141, '1136733297', '11995859414', 2147483647, 102291986);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(138, 'Kaique Enrico Farias', 'kkaiqueenricofarias@wsiconsultores.com.br', 142, '1129521359', '11984935924', 2147483647, 237003302);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(139, 'Renan Hugo Nicolas Nogueira', 'renanhugonicolasnogueira-97@sunrise.com.br', 143, '1127456218', '11984652136', 2147483647, 112858648);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(140, 'Carlos Renan Rocha', 'carlosrenanrocha_@escritoriogold.com.br', 144, '1125172311', '11983156718', 2147483647, 200811885);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(141, 'Carlos Eduardo Ruan José Costa', 'carloseduardoruanjosecosta__carloseduardoruanjosecosta@planicoop.com.br', 145, '1138041827', '11999247510', 2147483647, 229788385);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(142, 'Arthur Márcio Assunção', 'arthurmarcioassuncao..arthurmarcioassuncao@ynail.com.br', 146, '1125707335', '11997098822', 2147483647, 447680419);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(143, 'Vinicius Caio Renan Rezende', 'viniciuscaiorenanrezende__viniciuscaiorenanrezende@dep.ufscar.br', 147, '1129778985', '11999414143', 2147483647, 391794577);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(144, 'Thales Enzo Eduardo Moreira', 'thalesenzoeduardomoreira_@owl-ti.com.br', 148, '1137185948', '11994927864', 2147483647, 263876603);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(145, 'Renato Manoel Campos', 'renatomanoelcampos..renatomanoelcampos@alstom.com', 149, '1126644205', '11994600184', 2147483647, 346901182);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(146, 'Severino Thiago Cláudio Gomes', 'severinothiagoclaudiogomes__severinothiagoclaudiogomes@alcoa.com.br', 150, '1139221425', '11985868924', 2147483647, 220717084);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(147, 'Jorge Carlos Luan Fernandes', 'jorgecarlosluanfernandes__jorgecarlosluanfernandes@ctfmgacc.org.br', 151, '1128457021', '11995551230', 2147483647, 237951976);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(148, 'Caio Sérgio Benjamin Pinto', 'caiosergiobenjaminpinto__caiosergiobenjaminpinto@brunofaria.com', 152, '1137116731', '11986302718', 2147483647, 212352623);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(149, 'Breno Samuel Figueiredo', 'bbrenosamuelfigueiredo@damha.com.br', 153, '1135914602', '11991265315', 2147483647, 420280091);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(150, 'Yago Alexandre Thales Martins', 'yagoalexandrethalesmartins__yagoalexandrethalesmartins@terra.com', 154, '1126301451', '11992792840', 1414571801, 459568814);
+INSERT INTO `cliente` (`id`, `nome`, `email`, `id_endereco`, `telefone`, `celular`, `cpf`, `rg`) VALUES
+	(151, 'Marcos Vinicius Noah da Mota', 'marcosviniciusnoahdamota..marcosviniciusnoahdamota@publiconsult.com.br', 155, '1129961284', '11982934276', 2147483647, 262357719);
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela laribolo.compra
 DROP TABLE IF EXISTS `compra`;
@@ -11403,7 +11501,7 @@ CREATE TABLE IF NOT EXISTS `compra` (
   `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `mercado` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela laribolo.compra: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `compra` DISABLE KEYS */;
@@ -11411,8 +11509,9 @@ INSERT INTO `compra` (`id`, `data`, `mercado`) VALUES
 	(1, '2019-04-28 12:48:39', 'Açai Tatuapé');
 INSERT INTO `compra` (`id`, `data`, `mercado`) VALUES
 	(2, '2019-04-28 12:48:51', 'Atacadão Parque Novo Mundo');
+INSERT INTO `compra` (`id`, `data`, `mercado`) VALUES
+	(3, '2019-05-19 18:14:45', 'Atacadão Parque Novo Mundo');
 /*!40000 ALTER TABLE `compra` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela laribolo.compra_item
 DROP TABLE IF EXISTS `compra_item`;
@@ -11428,9 +11527,9 @@ CREATE TABLE IF NOT EXISTS `compra_item` (
   KEY `id_ingrediente.compra_item-ingrediente.id` (`id_ingrediente`),
   CONSTRAINT `id_ingrediente.compra_item-ingrediente.id` FOREIGN KEY (`id_ingrediente`) REFERENCES `ingrediente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `idcompra.itemcompra-ic.compra` FOREIGN KEY (`id_compra`) REFERENCES `compra` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela laribolo.compra_item: ~5 rows (aproximadamente)
+-- Copiando dados para a tabela laribolo.compra_item: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `compra_item` DISABLE KEYS */;
 INSERT INTO `compra_item` (`id`, `id_compra`, `id_ingrediente`, `embalagem`, `valor`, `quantidade`) VALUES
 	(1, 1, 10, 1000.00, 2.38, 3);
@@ -11442,8 +11541,19 @@ INSERT INTO `compra_item` (`id`, `id_compra`, `id_ingrediente`, `embalagem`, `va
 	(4, 2, 8, 800.00, 4.48, 2);
 INSERT INTO `compra_item` (`id`, `id_compra`, `id_ingrediente`, `embalagem`, `valor`, `quantidade`) VALUES
 	(5, 2, 5, 1000.00, 2.43, 3);
+INSERT INTO `compra_item` (`id`, `id_compra`, `id_ingrediente`, `embalagem`, `valor`, `quantidade`) VALUES
+	(6, 2, 4, 12.00, 7.90, 1);
+INSERT INTO `compra_item` (`id`, `id_compra`, `id_ingrediente`, `embalagem`, `valor`, `quantidade`) VALUES
+	(7, 2, 1, 1000.00, 3.22, 2);
+INSERT INTO `compra_item` (`id`, `id_compra`, `id_ingrediente`, `embalagem`, `valor`, `quantidade`) VALUES
+	(8, 2, 3, 100.00, 3.56, 2);
+INSERT INTO `compra_item` (`id`, `id_compra`, `id_ingrediente`, `embalagem`, `valor`, `quantidade`) VALUES
+	(9, 2, 6, 500.00, 8.00, 1);
+INSERT INTO `compra_item` (`id`, `id_compra`, `id_ingrediente`, `embalagem`, `valor`, `quantidade`) VALUES
+	(10, 3, 1, 1000.00, 3.22, 2);
+INSERT INTO `compra_item` (`id`, `id_compra`, `id_ingrediente`, `embalagem`, `valor`, `quantidade`) VALUES
+	(11, 3, 3, 100.00, 3.56, 2);
 /*!40000 ALTER TABLE `compra_item` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela laribolo.endereco
 DROP TABLE IF EXISTS `endereco`;
@@ -11460,9 +11570,9 @@ CREATE TABLE IF NOT EXISTS `endereco` (
   KEY `id_cidade.endereco-cidade.id` (`id_cidade`),
   CONSTRAINT `id_cidade.endereco-cidade.id` FOREIGN KEY (`id_cidade`) REFERENCES `cidade` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `id_logradouro.endereco-logradouro.id` FOREIGN KEY (`id_logradouro`) REFERENCES `logradouro` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=156 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela laribolo.endereco: ~99 rows (aproximadamente)
+-- Copiando dados para a tabela laribolo.endereco: ~141 rows (aproximadamente)
 /*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
 INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
 	(6, 34, 4890350, 'Christina Schunck Klein', 195, '', 5270);
@@ -11662,8 +11772,107 @@ INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero
 	(104, 34, 8340320, 'Marcos Gonçalves Correa', 741, '', 5270);
 INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
 	(105, 43, 1033050, 'Santa Ifigênia', 709, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(106, 34, 3710020, 'Tânia Maria', 911, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(107, 34, 2925902, 'Antonieta Leitão 293', 259, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(108, 29, 2612080, 'Júlio Santana', 620, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(109, 34, 4475430, 'Francesco Feo', 408, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(110, 34, 2883080, 'César Pereira das Neves', 645, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(111, 34, 3525030, 'Simão Leitão', 538, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(112, 34, 5224000, 'Cleonice Kammer Di Sandro', 270, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(113, 34, 5876030, 'Chaia Zingerevitz', 335, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(114, 34, 3265010, 'Barlavento', 629, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(115, 34, 3116000, 'do Oratório', 670, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(116, 34, 2951080, 'Alaíde Pereira', 298, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(117, 34, 5729110, 'Canto Bonito', 323, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(118, 44, 2997256, 'dos Humildes', 601, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(119, 5, 2998020, 'Amador Aguiar', 818, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(120, 34, 5761450, 'Otto Koch', 311, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(121, 34, 5626020, 'Grauçá', 503, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(122, 34, 3183100, 'Martins Bonilha', 711, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(123, 37, 3431007, 'Aristides Ávila', 355, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(124, 34, 4321000, 'dos Buritis', 213, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(125, 34, 4776180, 'Ferrúcio Dupré', 787, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(126, 34, 5796120, 'Logrono', 858, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(127, 34, 4678120, 'São Guido', 339, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(128, 34, 4156030, 'Mário Schioppa', 645, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(129, 34, 2244050, 'Guanapus', 235, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(130, 34, 8371160, 'Lorenzo Penna', 725, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(131, 34, 8265210, 'Cachoeira Balbina', 130, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(132, 34, 2765040, 'Vito Osvaldo Saponara', 111, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(133, 34, 4893495, 'Pedro Macroff Filho', 933, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(134, 44, 4858635, 'Pirata', 964, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(135, 34, 5882330, 'Alcaide', 896, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(136, 34, 4895032, 'Joaquim Franco de Toledo', 167, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(137, 34, 1049910, 'João Adolfo 118', 270, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(138, 34, 3216030, 'Santa Maria Madalena', 104, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(139, 34, 4789050, 'Leonel Marques Bernardes', 564, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(140, 34, 3572160, 'Mirapiranga', 298, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(141, 34, 4691170, 'Taguapaca', 708, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(142, 34, 2325510, 'Barreira Branca', 943, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(143, 34, 3694040, 'Estevão Matias dos Santos', 183, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(144, 34, 2186000, 'Cabo Antônio Pinton', 894, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(145, 34, 2051001, 'Amazonas da Silva', 141, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(146, 34, 5359040, 'Diogo do Couto', 948, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(147, 34, 5270040, 'Tupã', 468, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(148, 34, 3811080, 'Reverendo Almir Pereira Bahia', 366, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(149, 34, 5412972, 'João Moura 763', 695, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(150, 34, 2613020, 'dos Piquis', 102, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(151, 34, 4726120, 'Mirandópolis', 993, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(152, 34, 8320370, 'Paulo Nunes Félix', 850, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(153, 34, 4167010, 'Coronel Manuel Soares Neiva', 887, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(154, 34, 5687901, 'Dom Paulo Pedrosa 701', 337, '', 5270);
+INSERT INTO `endereco` (`id`, `id_logradouro`, `cep`, `nome_logradouro`, `numero`, `complemento`, `id_cidade`) VALUES
+	(155, 34, 2339040, 'Água Comprida', 424, '', 5270);
 /*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela laribolo.entrada
 DROP TABLE IF EXISTS `entrada`;
@@ -11678,9 +11887,9 @@ CREATE TABLE IF NOT EXISTS `entrada` (
   KEY `id_item_compra.entrada-id.item_compra` (`id_item_compra`),
   CONSTRAINT `id_compra.entrada-id_compra.itemcompra` FOREIGN KEY (`id_compra`) REFERENCES `compra_item` (`id_compra`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `id_item_compra.entrada-id.item_compra` FOREIGN KEY (`id_item_compra`) REFERENCES `compra_item` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela laribolo.entrada: ~5 rows (aproximadamente)
+-- Copiando dados para a tabela laribolo.entrada: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `entrada` DISABLE KEYS */;
 INSERT INTO `entrada` (`id`, `id_saida`, `id_compra`, `id_item_compra`, `cupom_fiscal`) VALUES
 	(3, NULL, 1, 1, '1000');
@@ -11692,8 +11901,15 @@ INSERT INTO `entrada` (`id`, `id_saida`, `id_compra`, `id_item_compra`, `cupom_f
 	(6, NULL, 2, 4, '4000');
 INSERT INTO `entrada` (`id`, `id_saida`, `id_compra`, `id_item_compra`, `cupom_fiscal`) VALUES
 	(7, NULL, 2, 5, '4000');
+INSERT INTO `entrada` (`id`, `id_saida`, `id_compra`, `id_item_compra`, `cupom_fiscal`) VALUES
+	(8, NULL, 2, 6, '4000');
+INSERT INTO `entrada` (`id`, `id_saida`, `id_compra`, `id_item_compra`, `cupom_fiscal`) VALUES
+	(9, NULL, 2, 7, '4000');
+INSERT INTO `entrada` (`id`, `id_saida`, `id_compra`, `id_item_compra`, `cupom_fiscal`) VALUES
+	(10, NULL, 2, 8, '4000');
+INSERT INTO `entrada` (`id`, `id_saida`, `id_compra`, `id_item_compra`, `cupom_fiscal`) VALUES
+	(11, NULL, 2, 9, '4000');
 /*!40000 ALTER TABLE `entrada` ENABLE KEYS */;
-
 
 -- Copiando estrutura para tabela laribolo.entrega
 DROP TABLE IF EXISTS `entrega`;
@@ -11713,7 +11929,6 @@ CREATE TABLE IF NOT EXISTS `entrega` (
 /*!40000 ALTER TABLE `entrega` DISABLE KEYS */;
 /*!40000 ALTER TABLE `entrega` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela laribolo.ingrediente
 DROP TABLE IF EXISTS `ingrediente`;
 CREATE TABLE IF NOT EXISTS `ingrediente` (
@@ -11721,9 +11936,9 @@ CREATE TABLE IF NOT EXISTS `ingrediente` (
   `nome` varchar(100) NOT NULL,
   `unidade_medida` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela laribolo.ingrediente: ~21 rows (aproximadamente)
+-- Copiando dados para a tabela laribolo.ingrediente: ~22 rows (aproximadamente)
 /*!40000 ALTER TABLE `ingrediente` DISABLE KEYS */;
 INSERT INTO `ingrediente` (`id`, `nome`, `unidade_medida`) VALUES
 	(1, 'Farinha', 2);
@@ -11756,7 +11971,7 @@ INSERT INTO `ingrediente` (`id`, `nome`, `unidade_medida`) VALUES
 INSERT INTO `ingrediente` (`id`, `nome`, `unidade_medida`) VALUES
 	(15, 'Leite em pó', 2);
 INSERT INTO `ingrediente` (`id`, `nome`, `unidade_medida`) VALUES
-	(16, '2anulado', 2);
+	(16, 'Granulado', 2);
 INSERT INTO `ingrediente` (`id`, `nome`, `unidade_medida`) VALUES
 	(17, 'Ameixa Cons', 2);
 INSERT INTO `ingrediente` (`id`, `nome`, `unidade_medida`) VALUES
@@ -11767,27 +11982,98 @@ INSERT INTO `ingrediente` (`id`, `nome`, `unidade_medida`) VALUES
 	(20, 'Brigadeiro', 2);
 INSERT INTO `ingrediente` (`id`, `nome`, `unidade_medida`) VALUES
 	(21, 'Beijinho', 2);
+INSERT INTO `ingrediente` (`id`, `nome`, `unidade_medida`) VALUES
+	(22, 'Confete', 2);
 /*!40000 ALTER TABLE `ingrediente` ENABLE KEYS */;
 
-
--- Copiando estrutura para tabela laribolo.ingredientes_manufaturado
-DROP TABLE IF EXISTS `ingredientes_manufaturado`;
-CREATE TABLE IF NOT EXISTS `ingredientes_manufaturado` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_manufaturado` int(11) NOT NULL,
-  `id_ingrediente` int(11) NOT NULL,
-  `quantidade` float NOT NULL,
+-- Copiando estrutura para tabela laribolo.ingrediente_configuracao
+DROP TABLE IF EXISTS `ingrediente_configuracao`;
+CREATE TABLE IF NOT EXISTS `ingrediente_configuracao` (
+  `id` int(11) NOT NULL,
+  `id_ingrediente_parte` int(11) NOT NULL,
+  `id_ingradiente` int(11) NOT NULL,
+  `quantidade` float(10,2) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `manufaturadiid.ingredimanufat-id.manufat_idx` (`id_manufaturado`),
-  KEY `ingredientid.ingredimanufat-id-ingrediente_idx` (`id_ingrediente`),
-  CONSTRAINT `ingredientid.ingredimanufat-id-ingrediente` FOREIGN KEY (`id_ingrediente`) REFERENCES `ingrediente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `manufaturadiid.ingredimanufat-id.manufat` FOREIGN KEY (`id_manufaturado`) REFERENCES `manufaturado` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `id_ingrediente_parte.ingrdiente_config-id.ingrediente_parte` (`id_ingrediente_parte`),
+  KEY `id_ingrediente.ingrediente_configuracao-id.ingrediente` (`id_ingradiente`),
+  CONSTRAINT `id_ingrediente.ingrediente_configuracao-id.ingrediente` FOREIGN KEY (`id_ingradiente`) REFERENCES `ingrediente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `id_ingrediente_parte.ingrdiente_config-id.ingrediente_parte` FOREIGN KEY (`id_ingrediente_parte`) REFERENCES `ingrediente_parte` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela laribolo.ingredientes_manufaturado: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `ingredientes_manufaturado` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ingredientes_manufaturado` ENABLE KEYS */;
+-- Copiando dados para a tabela laribolo.ingrediente_configuracao: ~9 rows (aproximadamente)
+/*!40000 ALTER TABLE `ingrediente_configuracao` DISABLE KEYS */;
+INSERT INTO `ingrediente_configuracao` (`id`, `id_ingrediente_parte`, `id_ingradiente`, `quantidade`) VALUES
+	(1, 2, 1, 20.00);
+INSERT INTO `ingrediente_configuracao` (`id`, `id_ingrediente_parte`, `id_ingradiente`, `quantidade`) VALUES
+	(2, 2, 2, 20.00);
+INSERT INTO `ingrediente_configuracao` (`id`, `id_ingrediente_parte`, `id_ingradiente`, `quantidade`) VALUES
+	(3, 2, 3, 2.00);
+INSERT INTO `ingrediente_configuracao` (`id`, `id_ingrediente_parte`, `id_ingradiente`, `quantidade`) VALUES
+	(4, 2, 4, 0.60);
+INSERT INTO `ingrediente_configuracao` (`id`, `id_ingrediente_parte`, `id_ingradiente`, `quantidade`) VALUES
+	(5, 3, 1, 40.00);
+INSERT INTO `ingrediente_configuracao` (`id`, `id_ingrediente_parte`, `id_ingradiente`, `quantidade`) VALUES
+	(6, 3, 2, 30.00);
+INSERT INTO `ingrediente_configuracao` (`id`, `id_ingrediente_parte`, `id_ingradiente`, `quantidade`) VALUES
+	(7, 3, 3, 2.00);
+INSERT INTO `ingrediente_configuracao` (`id`, `id_ingrediente_parte`, `id_ingradiente`, `quantidade`) VALUES
+	(8, 3, 4, 0.83);
+INSERT INTO `ingrediente_configuracao` (`id`, `id_ingrediente_parte`, `id_ingradiente`, `quantidade`) VALUES
+	(9, 3, 5, 16.70);
+INSERT INTO `ingrediente_configuracao` (`id`, `id_ingrediente_parte`, `id_ingradiente`, `quantidade`) VALUES
+	(10, 3, 6, 16.70);
+/*!40000 ALTER TABLE `ingrediente_configuracao` ENABLE KEYS */;
 
+-- Copiando estrutura para tabela laribolo.ingrediente_depreciado
+DROP TABLE IF EXISTS `ingrediente_depreciado`;
+CREATE TABLE IF NOT EXISTS `ingrediente_depreciado` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_compra_item` int(11) NOT NULL DEFAULT '0',
+  `id_saida_disperdicio` int(11) NOT NULL DEFAULT '0',
+  `id_ingrediente_depreciado_motivo` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `idcompitem.ingredepre-compitem.id` (`id_compra_item`),
+  KEY `idsaidadis.ingrdepre-saida_disperdicio.id` (`id_saida_disperdicio`),
+  KEY `idingrdepremot.igredepre-ingrdepremot.id` (`id_ingrediente_depreciado_motivo`),
+  CONSTRAINT `idcompitem.ingredepre-compitem.id` FOREIGN KEY (`id_compra_item`) REFERENCES `compra_item` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `idingrdepremot.igredepre-ingrdepremot.id` FOREIGN KEY (`id_ingrediente_depreciado_motivo`) REFERENCES `ingrediente_depreciado_motivo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `idsaidadis.ingrdepre-saida_disperdicio.id` FOREIGN KEY (`id_saida_disperdicio`) REFERENCES `saida_disperdicio` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela laribolo.ingrediente_depreciado: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `ingrediente_depreciado` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ingrediente_depreciado` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela laribolo.ingrediente_depreciado_motivo
+DROP TABLE IF EXISTS `ingrediente_depreciado_motivo`;
+CREATE TABLE IF NOT EXISTS `ingrediente_depreciado_motivo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `motivo` varchar(150) NOT NULL DEFAULT '',
+  `descricao` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela laribolo.ingrediente_depreciado_motivo: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `ingrediente_depreciado_motivo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ingrediente_depreciado_motivo` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela laribolo.ingrediente_parte
+DROP TABLE IF EXISTS `ingrediente_parte`;
+CREATE TABLE IF NOT EXISTS `ingrediente_parte` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `descricao` varchar(250) NOT NULL,
+  `data_criacao` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela laribolo.ingrediente_parte: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `ingrediente_parte` DISABLE KEYS */;
+INSERT INTO `ingrediente_parte` (`id`, `nome`, `descricao`, `data_criacao`) VALUES
+	(2, 'Bolo de Pote Massa Branca', '', '2019-05-01 10:41:54');
+INSERT INTO `ingrediente_parte` (`id`, `nome`, `descricao`, `data_criacao`) VALUES
+	(3, 'Bolo de Pote Massa Escura', '', '2019-05-01 10:42:09');
+/*!40000 ALTER TABLE `ingrediente_parte` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela laribolo.logradouro
 DROP TABLE IF EXISTS `logradouro`;
@@ -11797,7 +12083,7 @@ CREATE TABLE IF NOT EXISTS `logradouro` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela laribolo.logradouro: ~44 rows (aproximadamente)
+-- Copiando dados para a tabela laribolo.logradouro: ~45 rows (aproximadamente)
 /*!40000 ALTER TABLE `logradouro` DISABLE KEYS */;
 INSERT INTO `logradouro` (`id`, `logradouro`) VALUES
 	(2, 'Aeroporto');
@@ -11889,44 +12175,6 @@ INSERT INTO `logradouro` (`id`, `logradouro`) VALUES
 	(45, 'Vila');
 /*!40000 ALTER TABLE `logradouro` ENABLE KEYS */;
 
-
--- Copiando estrutura para tabela laribolo.manufaturado
-DROP TABLE IF EXISTS `manufaturado`;
-CREATE TABLE IF NOT EXISTS `manufaturado` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) NOT NULL,
-  `valor_venda` float(10,2) NOT NULL,
-  `id_categoria` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_cat.manu-catmanu.id_idx` (`id_categoria`),
-  CONSTRAINT `id_cat.manu-catmanu.id` FOREIGN KEY (`id_categoria`) REFERENCES `categoria_manufaturado` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-
--- Copiando dados para a tabela laribolo.manufaturado: ~10 rows (aproximadamente)
-/*!40000 ALTER TABLE `manufaturado` DISABLE KEYS */;
-INSERT INTO `manufaturado` (`id`, `nome`, `valor_venda`, `id_categoria`) VALUES
-	(1, 'Abacaxi', 5.00, 1);
-INSERT INTO `manufaturado` (`id`, `nome`, `valor_venda`, `id_categoria`) VALUES
-	(2, 'Morango', 5.00, 1);
-INSERT INTO `manufaturado` (`id`, `nome`, `valor_venda`, `id_categoria`) VALUES
-	(3, 'Sensação', 5.00, 1);
-INSERT INTO `manufaturado` (`id`, `nome`, `valor_venda`, `id_categoria`) VALUES
-	(4, 'Brigadeiro', 5.00, 1);
-INSERT INTO `manufaturado` (`id`, `nome`, `valor_venda`, `id_categoria`) VALUES
-	(5, 'Beijinho', 5.00, 1);
-INSERT INTO `manufaturado` (`id`, `nome`, `valor_venda`, `id_categoria`) VALUES
-	(6, 'Prestígio', 5.00, 1);
-INSERT INTO `manufaturado` (`id`, `nome`, `valor_venda`, `id_categoria`) VALUES
-	(7, 'Ninho', 5.00, 2);
-INSERT INTO `manufaturado` (`id`, `nome`, `valor_venda`, `id_categoria`) VALUES
-	(8, 'Limão', 5.00, 2);
-INSERT INTO `manufaturado` (`id`, `nome`, `valor_venda`, `id_categoria`) VALUES
-	(9, 'Doce Leite ameixa', 5.00, 2);
-INSERT INTO `manufaturado` (`id`, `nome`, `valor_venda`, `id_categoria`) VALUES
-	(10, 'Paçoca', 5.00, 2);
-/*!40000 ALTER TABLE `manufaturado` ENABLE KEYS */;
-
-
 -- Copiando estrutura para tabela laribolo.pedido
 DROP TABLE IF EXISTS `pedido`;
 CREATE TABLE IF NOT EXISTS `pedido` (
@@ -11940,7 +12188,6 @@ CREATE TABLE IF NOT EXISTS `pedido` (
 /*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
 /*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela laribolo.pedidos_itens
 DROP TABLE IF EXISTS `pedidos_itens`;
 CREATE TABLE IF NOT EXISTS `pedidos_itens` (
@@ -11951,30 +12198,193 @@ CREATE TABLE IF NOT EXISTS `pedidos_itens` (
   KEY `idmanufat.pedidositens-manufat.id_idx` (`id_manufaturado`),
   KEY `fk_pedidos_itens_pedido1_idx` (`id_pedido`),
   CONSTRAINT `fk_pedidos_itens_pedido1` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `idmanufat.pedidositens-manufat.id` FOREIGN KEY (`id_manufaturado`) REFERENCES `manufaturado` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `idmanufat.pedidositens-manufat.id` FOREIGN KEY (`id_manufaturado`) REFERENCES `produto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela laribolo.pedidos_itens: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `pedidos_itens` DISABLE KEYS */;
 /*!40000 ALTER TABLE `pedidos_itens` ENABLE KEYS */;
 
+-- Copiando estrutura para tabela laribolo.pedido_preparacao_produto
+DROP TABLE IF EXISTS `pedido_preparacao_produto`;
+CREATE TABLE IF NOT EXISTS `pedido_preparacao_produto` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_produto` int(11) NOT NULL DEFAULT '0',
+  `quantidade_produto` smallint(6) DEFAULT '0',
+  `data_pedido` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `id_produto.pedido_preparacao_produto-produto.id` (`id_produto`),
+  CONSTRAINT `id_produto.pedido_preparacao_produto-produto.id` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela laribolo.pedido_preparacao_produto: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `pedido_preparacao_produto` DISABLE KEYS */;
+INSERT INTO `pedido_preparacao_produto` (`id`, `id_produto`, `quantidade_produto`, `data_pedido`) VALUES
+	(1, 4, 5, '2019-05-19 13:35:50');
+INSERT INTO `pedido_preparacao_produto` (`id`, `id_produto`, `quantidade_produto`, `data_pedido`) VALUES
+	(2, 2, 6, '2019-05-19 13:36:04');
+/*!40000 ALTER TABLE `pedido_preparacao_produto` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela laribolo.pedido_reposicao_ingrediente
+DROP TABLE IF EXISTS `pedido_reposicao_ingrediente`;
+CREATE TABLE IF NOT EXISTS `pedido_reposicao_ingrediente` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `data_pedido` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela laribolo.pedido_reposicao_ingrediente: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `pedido_reposicao_ingrediente` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pedido_reposicao_ingrediente` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela laribolo.preparacao_ingrediente
+DROP TABLE IF EXISTS `preparacao_ingrediente`;
+CREATE TABLE IF NOT EXISTS `preparacao_ingrediente` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_pedido_preparacao_produto` int(11) NOT NULL DEFAULT '0',
+  `id_pedido_reposicao_ingrediente` int(11) DEFAULT NULL,
+  `id_ingrediente` int(11) DEFAULT NULL,
+  `quantidade_ingrediente` float(10,2) NOT NULL DEFAULT '0.00',
+  PRIMARY KEY (`id`),
+  KEY `idpedpreprod.prepingr-pedpreppro.id` (`id_pedido_preparacao_produto`),
+  KEY `idpedrepingr.prepingr-pedrepingr.id` (`id_pedido_reposicao_ingrediente`),
+  KEY `idingr.prepingr-ingrediente.id` (`id_ingrediente`),
+  CONSTRAINT `idingr.prepingr-ingrediente.id` FOREIGN KEY (`id_ingrediente`) REFERENCES `ingrediente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `idpedpreprod.prepingr-pedpreppro.id` FOREIGN KEY (`id_pedido_preparacao_produto`) REFERENCES `pedido_preparacao_produto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela laribolo.preparacao_ingrediente: ~10 rows (aproximadamente)
+/*!40000 ALTER TABLE `preparacao_ingrediente` DISABLE KEYS */;
+INSERT INTO `preparacao_ingrediente` (`id`, `id_pedido_preparacao_produto`, `id_pedido_reposicao_ingrediente`, `id_ingrediente`, `quantidade_ingrediente`) VALUES
+	(7, 2, NULL, 1, 120.00);
+INSERT INTO `preparacao_ingrediente` (`id`, `id_pedido_preparacao_produto`, `id_pedido_reposicao_ingrediente`, `id_ingrediente`, `quantidade_ingrediente`) VALUES
+	(8, 2, NULL, 2, 120.00);
+INSERT INTO `preparacao_ingrediente` (`id`, `id_pedido_preparacao_produto`, `id_pedido_reposicao_ingrediente`, `id_ingrediente`, `quantidade_ingrediente`) VALUES
+	(9, 2, NULL, 3, 12.00);
+INSERT INTO `preparacao_ingrediente` (`id`, `id_pedido_preparacao_produto`, `id_pedido_reposicao_ingrediente`, `id_ingrediente`, `quantidade_ingrediente`) VALUES
+	(10, 2, NULL, 4, 3.60);
+INSERT INTO `preparacao_ingrediente` (`id`, `id_pedido_preparacao_produto`, `id_pedido_reposicao_ingrediente`, `id_ingrediente`, `quantidade_ingrediente`) VALUES
+	(11, 1, NULL, 1, 200.00);
+INSERT INTO `preparacao_ingrediente` (`id`, `id_pedido_preparacao_produto`, `id_pedido_reposicao_ingrediente`, `id_ingrediente`, `quantidade_ingrediente`) VALUES
+	(12, 1, NULL, 2, 150.00);
+INSERT INTO `preparacao_ingrediente` (`id`, `id_pedido_preparacao_produto`, `id_pedido_reposicao_ingrediente`, `id_ingrediente`, `quantidade_ingrediente`) VALUES
+	(13, 1, NULL, 3, 10.00);
+INSERT INTO `preparacao_ingrediente` (`id`, `id_pedido_preparacao_produto`, `id_pedido_reposicao_ingrediente`, `id_ingrediente`, `quantidade_ingrediente`) VALUES
+	(14, 1, NULL, 4, 4.15);
+INSERT INTO `preparacao_ingrediente` (`id`, `id_pedido_preparacao_produto`, `id_pedido_reposicao_ingrediente`, `id_ingrediente`, `quantidade_ingrediente`) VALUES
+	(15, 1, NULL, 5, 83.50);
+INSERT INTO `preparacao_ingrediente` (`id`, `id_pedido_preparacao_produto`, `id_pedido_reposicao_ingrediente`, `id_ingrediente`, `quantidade_ingrediente`) VALUES
+	(16, 1, NULL, 6, 83.50);
+/*!40000 ALTER TABLE `preparacao_ingrediente` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela laribolo.produto
+DROP TABLE IF EXISTS `produto`;
+CREATE TABLE IF NOT EXISTS `produto` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `valor_venda` float(10,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela laribolo.produto: ~10 rows (aproximadamente)
+/*!40000 ALTER TABLE `produto` DISABLE KEYS */;
+INSERT INTO `produto` (`id`, `nome`, `valor_venda`) VALUES
+	(1, 'Abacaxi', 5.00);
+INSERT INTO `produto` (`id`, `nome`, `valor_venda`) VALUES
+	(2, 'Morango', 5.00);
+INSERT INTO `produto` (`id`, `nome`, `valor_venda`) VALUES
+	(3, 'Sensação', 5.00);
+INSERT INTO `produto` (`id`, `nome`, `valor_venda`) VALUES
+	(4, 'Brigadeiro', 5.00);
+INSERT INTO `produto` (`id`, `nome`, `valor_venda`) VALUES
+	(5, 'Beijinho', 5.00);
+INSERT INTO `produto` (`id`, `nome`, `valor_venda`) VALUES
+	(6, 'Prestígio', 5.00);
+INSERT INTO `produto` (`id`, `nome`, `valor_venda`) VALUES
+	(7, 'Ninho', 5.00);
+INSERT INTO `produto` (`id`, `nome`, `valor_venda`) VALUES
+	(8, 'Limão', 5.00);
+INSERT INTO `produto` (`id`, `nome`, `valor_venda`) VALUES
+	(9, 'Doce Leite ameixa', 5.00);
+INSERT INTO `produto` (`id`, `nome`, `valor_venda`) VALUES
+	(10, 'Paçoca', 5.00);
+/*!40000 ALTER TABLE `produto` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela laribolo.produto_ingrediente_parte
+DROP TABLE IF EXISTS `produto_ingrediente_parte`;
+CREATE TABLE IF NOT EXISTS `produto_ingrediente_parte` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_produto` int(11) NOT NULL,
+  `id_ingrediente_parte` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `manufaturadiid.ingredimanufat-id.manufat_idx` (`id_produto`),
+  KEY `ingredientid.ingredimanufat-id-ingrediente_idx` (`id_ingrediente_parte`),
+  CONSTRAINT `id_ingrediente_parte.produto_ingr_parte-id.ingr_parte` FOREIGN KEY (`id_ingrediente_parte`) REFERENCES `ingrediente_parte` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `id_produto.produto_ingr_parte-id.produto` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela laribolo.produto_ingrediente_parte: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `produto_ingrediente_parte` DISABLE KEYS */;
+INSERT INTO `produto_ingrediente_parte` (`id`, `id_produto`, `id_ingrediente_parte`) VALUES
+	(1, 1, 2);
+INSERT INTO `produto_ingrediente_parte` (`id`, `id_produto`, `id_ingrediente_parte`) VALUES
+	(2, 2, 2);
+INSERT INTO `produto_ingrediente_parte` (`id`, `id_produto`, `id_ingrediente_parte`) VALUES
+	(3, 4, 3);
+/*!40000 ALTER TABLE `produto_ingrediente_parte` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela laribolo.saida
 DROP TABLE IF EXISTS `saida`;
 CREATE TABLE IF NOT EXISTS `saida` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_pedido` int(11) NOT NULL,
-  `qtd` float NOT NULL,
-  `id_materia_prima` int(11) NOT NULL,
+  `classificacao_saida` char(1) NOT NULL DEFAULT '',
+  `id_preparacao_ingrediente` int(11) DEFAULT NULL,
+  `id_ingrediente_depreciado` int(11) DEFAULT NULL,
+  `id_entrada` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_pedido.saida-id.pedido_idx` (`id_pedido`),
-  CONSTRAINT `id_pedido.saida-id.pedido` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `idingrdepre.saida-ingrdepr.id` (`id_ingrediente_depreciado`),
+  KEY `idprepingre.saida-prepingre.id` (`id_preparacao_ingrediente`),
+  KEY `id_entrada.saida-entrada.id` (`id_entrada`),
+  CONSTRAINT `id_entrada.saida-entrada.id` FOREIGN KEY (`id_entrada`) REFERENCES `entrada` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `idingrdepre.saida-ingrdepr.id` FOREIGN KEY (`id_ingrediente_depreciado`) REFERENCES `ingrediente_depreciado` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `idprepingre.saida-prepingre.id` FOREIGN KEY (`id_preparacao_ingrediente`) REFERENCES `preparacao_ingrediente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela laribolo.saida: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela laribolo.saida: ~10 rows (aproximadamente)
 /*!40000 ALTER TABLE `saida` DISABLE KEYS */;
+INSERT INTO `saida` (`id`, `classificacao_saida`, `id_preparacao_ingrediente`, `id_ingrediente_depreciado`, `id_entrada`) VALUES
+	(1, 'P', 11, NULL, 9);
+INSERT INTO `saida` (`id`, `classificacao_saida`, `id_preparacao_ingrediente`, `id_ingrediente_depreciado`, `id_entrada`) VALUES
+	(2, 'P', 12, NULL, 4);
+INSERT INTO `saida` (`id`, `classificacao_saida`, `id_preparacao_ingrediente`, `id_ingrediente_depreciado`, `id_entrada`) VALUES
+	(3, 'P', 13, NULL, 10);
+INSERT INTO `saida` (`id`, `classificacao_saida`, `id_preparacao_ingrediente`, `id_ingrediente_depreciado`, `id_entrada`) VALUES
+	(4, 'P', 14, NULL, 8);
+INSERT INTO `saida` (`id`, `classificacao_saida`, `id_preparacao_ingrediente`, `id_ingrediente_depreciado`, `id_entrada`) VALUES
+	(5, 'P', 15, NULL, 7);
+INSERT INTO `saida` (`id`, `classificacao_saida`, `id_preparacao_ingrediente`, `id_ingrediente_depreciado`, `id_entrada`) VALUES
+	(6, 'P', 16, NULL, 11);
+INSERT INTO `saida` (`id`, `classificacao_saida`, `id_preparacao_ingrediente`, `id_ingrediente_depreciado`, `id_entrada`) VALUES
+	(7, 'P', 7, NULL, 9);
+INSERT INTO `saida` (`id`, `classificacao_saida`, `id_preparacao_ingrediente`, `id_ingrediente_depreciado`, `id_entrada`) VALUES
+	(8, 'P', 8, NULL, 4);
+INSERT INTO `saida` (`id`, `classificacao_saida`, `id_preparacao_ingrediente`, `id_ingrediente_depreciado`, `id_entrada`) VALUES
+	(9, 'P', 9, NULL, 10);
+INSERT INTO `saida` (`id`, `classificacao_saida`, `id_preparacao_ingrediente`, `id_ingrediente_depreciado`, `id_entrada`) VALUES
+	(10, 'P', 10, NULL, 8);
 /*!40000 ALTER TABLE `saida` ENABLE KEYS */;
 
+-- Copiando estrutura para tabela laribolo.saida_disperdicio
+DROP TABLE IF EXISTS `saida_disperdicio`;
+CREATE TABLE IF NOT EXISTS `saida_disperdicio` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `data_saida` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela laribolo.saida_disperdicio: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `saida_disperdicio` DISABLE KEYS */;
+/*!40000 ALTER TABLE `saida_disperdicio` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela laribolo.uf
 DROP TABLE IF EXISTS `uf`;
@@ -12043,7 +12453,6 @@ INSERT INTO `uf` (`id`, `estado`, `uf`) VALUES
 	(27, 'Tocantins', 'TO');
 /*!40000 ALTER TABLE `uf` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela laribolo.unidade_medida
 DROP TABLE IF EXISTS `unidade_medida`;
 CREATE TABLE IF NOT EXISTS `unidade_medida` (
@@ -12062,7 +12471,6 @@ INSERT INTO `unidade_medida` (`id`, `nome`) VALUES
 	(3, 'ml');
 /*!40000 ALTER TABLE `unidade_medida` ENABLE KEYS */;
 
-
 -- Copiando estrutura para tabela laribolo.usuario
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
@@ -12079,6 +12487,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Copiando dados para a tabela laribolo.usuario: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

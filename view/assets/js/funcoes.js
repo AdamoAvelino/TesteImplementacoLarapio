@@ -6,6 +6,5 @@ $(window).ready(function() {
 
 function perguntar(id_form)
 {
-  console.log($('#'.id_form));
   document.getElementById(id_form).submit();
 }

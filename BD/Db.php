@@ -4,7 +4,8 @@ namespace Larapio\BD;
 
 use \PDO;
 
-class Db extends PDO {
+class Db extends PDO
+{
 
     const OPTIONS = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -13,7 +14,8 @@ class Db extends PDO {
 
     private $pdo;
 
-    public function __construct() {
+    public function __construct()
+    {
         extract($this->getConfigDb());
 
         if ($sgbd == 'mysql') {
@@ -30,7 +32,8 @@ class Db extends PDO {
      * ---------------------------------------------------------------------<br>
      * @return array
      */
-    private function getConfigDb() {
+    private function getConfigDb()
+    {
         $config = parse_ini_file(CONFIG_FILE, true);
         extract($config);
         return $banco_de_dados;
@@ -41,7 +44,8 @@ class Db extends PDO {
      * @param type $stm
      * @param type $data
      */
-    private function bindValues(&$stm, $data) {
+    private function bindValues(&$stm, $data)
+    {
         foreach ($data as $chave => $val) {
             $tipo = (is_int($val)) ? PDO::PARAM_INT : PDO::PARAM_STR;
             $stm->bindValue(":$chave", $val, $tipo);
@@ -55,7 +59,8 @@ class Db extends PDO {
      * @param type $ignoreFech Quando precisar de um resultado que deva vir em array, enviar falso no parametro
      * @return type
      */
-    public function executar($instrucao, $ignoreFech, $bindValues = []) {
+    public function executar($instrucao, $ignoreFech, $bindValues = [])
+    {
         $stm = $this->prepare($instrucao);
         if ($bindValues) {
 
@@ -75,5 +80,4 @@ class Db extends PDO {
 
         return $this->lastInsertId();
     }
-
 }

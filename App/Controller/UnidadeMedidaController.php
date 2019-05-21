@@ -80,9 +80,8 @@ class UnidadeMedidaController
     public function alterar()
     {
         if ($this->entradas_validas()) {
-            $request = $this->request->getRequest(['token']);
-            $id = $request['id'];
-            unset($request['id']);
+            $id = $this->request->getRequest()['id'];
+            $request = $this->request->getRequest(['token', 'id']);
             $this->unidadeMedida->update($request, $id);
             $this->sessao->setFlash('sucesso', 'alteracao', 'Unidade de Medida Incluida com Sucesso');
             $this->consultar($id);

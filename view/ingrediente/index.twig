@@ -1,50 +1,80 @@
 {% extends 'base.twig'%}
 {% block title %}Ingredientes{% endblock %}
 {% block content %}
-<div class="row mt-2">
-  <div class="col-md-4">
-    <h2>Ingredientes</h2>
-    <form action="/incluir_ingrediente" method="POST">
-      <button class='btn btn-success' type='submit'>
-        <i class="fas fa-plus-square"></i> Incluir
-      </button>
-    </form>
-    <hr>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    {% if ingredientes %}
-    <table class="table table-hover table-striped table-sm shadow table-bordered">
-      <thead class='thead-dark'>
-        <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Nome</th>
-          <th scope="col">Unidade de Medida</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for ingrediente in ingredientes %}
-        <tr>
-          <th scope="row">
-            <a href='/editar_ingrediente/{{ ingrediente.id }}'>
-            {{ ingrediente.id }}
-            </a>
-          </th>
-          <td>{{ ingrediente.nome }}</td>
-          <td>{{ ingrediente.unidade_medida }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    {% else %}
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <strong>Ops!</strong> Não Há Nenhum Registro de Ingredientes
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+    {% set filtro = filtros|join('-') %}
+    {{ filtro }}
+    <div class="row mt-3 ">
+        <div class="col-md-4 " style='min-height: 100%'>
+            <div class='shadow p-3' style="min-height: 100%;">
+                <h4><span class='badge badge-secondary'>Controle</span></h4>
+                <form action="/ingrediente/incluir" method="POST">
+                    <button class='btn btn-success' type='submit' title='Incluir Novo Ingrediente'>
+                        <i class="fas fa-plus-square"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class='col-md-8'>
+            <div class='shadow p-3'>
+                <h4><span class='badge badge-secondary'>Filtro</span></h4>
+                <form action="/ingrediente/buscar" method='post'>
+                    <div class='row'>
+                        <div class='col-md-3 form-group'>
+                            <input type="text" value="{{filtros.nome ? filtros.nome : ''}}" name="nome" id="" class="form-control form-control-sm"
+                                   placeholder="Nome">
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-md-3 form-group'>
+                            <button type='submit' class='btn btn-warning' title='Busca de Acordo com os Filtros Preenchidos'>
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
     </div>
-    {% endif %}
-  </div>
-</div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+            <h3 class='text-center'>Ingredientes</h3>
+            {% if ingredientes %}
+                <table class="table table-hover table-striped table-sm shadow table-bordered">
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th scope="col" width='5%'>
+                                <a href='ingrediente/ordenacao/{{filtro}}/nome/{{order}}'>Id</a>
+                            </th>
+                            <th scope="col">Nome</th>
+                            <th scope="col" width='10%'>Quantidade</th>
+                            <th scope="col" width='5%'>UM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ingrediente in ingredientes %}
+                            <tr>
+                                <th scope="row" class='text-center'>
+                                    <a href='/ingrediente/editar/{{ ingrediente.id }}'>
+                                        {{ ingrediente.id }}
+                                    </a>
+                                </th>
+                                <td>{{ ingrediente.nome }}</td>
+                                <td class='text-right'>{{ ingrediente.quantidade }}</td>
+                                <td>{{ ingrediente.unidade_medida }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Ops!</strong> Não Há Nenhum Registro de Ingredientes
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
