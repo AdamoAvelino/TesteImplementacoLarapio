@@ -9,21 +9,17 @@ class Ingrediente extends Model
 {
 
     private $colection = [];
-    
     //Atributos da entidade Ingrediente
     private $id;
     private $nome;
     private $quantidade;
     private $unidade_medida;
-    
     private $listaUnidadeMedida;
-    
     // Atributo que condiciona um filtro para um lista de montagem de colecao
     private $where = [['1', '=', '1']];
-    
     //Atributos para ordenação do grid
-    private $ordenacao = 'i.id';
-    private $coluna = 0;
+//    private $ordenacao = '0';
+    private $coluna = 'i.id';
 
     /**
      * ------------------------------------------------------------------------------------------------------------
@@ -53,7 +49,7 @@ class Ingrediente extends Model
         , um.nome unidade_medida';
         $lista = $this->result = $this->query->select($select)
                 ->from($this->table . ' i')
-                ->join('unidade_medida um')
+                ->inner_join('unidade_medida um')
                 ->on(['um.id', '=', 'i.unidade_medida'])
                 ->left_join('compra_item ci')
                 ->on(['ci.id_ingrediente', '=', 'i.id'])
@@ -65,6 +61,7 @@ class Ingrediente extends Model
                 ->on(['pin.id', '=', 's.id_preparacao_ingrediente'])
                 ->where($this->where)
                 ->group_by('i.id')
+                ->order_by($this->coluna)
                 ->getSql(false);
         $obj = new ModelColection('ingrediente', $lista);
         return $this->colection = $obj->getColection();
@@ -72,14 +69,48 @@ class Ingrediente extends Model
 
     /**
      * ------------------------------------------------------------------------------------------------------------
-     * @param type $dados
+     * @param type $filtros
      */
     public function buscar($filtros)
     {
 
-        if ($filtros['nome']) {
+        if (isset($filtros['nome']) and $filtros['nome']) {
             $this->where[] = ['i.nome', 'LIKE', "%{$filtros['nome']}%",];
             $this->where[] = 'AND';
+        }
+    }
+
+    /**
+     * ------------------------------------------------------------------------------------------------------------
+     */
+    public function ordenar($coluna, $order)
+    {
+        $direcao = $order ? 'DESC' : 'ASC';
+        switch ($coluna) {
+            case 'id' : $ordenacao = 'i.id %s';
+                break;
+            case 'ingr' : $ordenacao = 'i.nome %s';
+                break;
+            case 'qtd' : $ordenacao = 'quantidade %s';
+                break;
+            case 'um' : $ordenacao = 'unidade_medida %s';
+                break;
+            default : $ordenacao = 'i.id';
+                break;
+        }
+
+        $this->coluna = sprintf($ordenacao, $direcao);
+    }
+
+    /**
+     * 
+     * @param array $busca
+     * @param array $ordenacao
+     */
+    private function ordenarBuscar($busca, $ordem)
+    {
+        if ($busca) {
+            $this->buscar(array_filter($busca));
         }
     }
 
@@ -168,4 +199,5 @@ class Ingrediente extends Model
     {
         $this->unidade_medida = $unidade_medida;
     }
+
 }

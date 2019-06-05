@@ -74,7 +74,7 @@ class Request
     {
         $this->servidor = $_SERVER;
         $this->method = $this->servidor['REQUEST_METHOD'];
-        
+
         if (isset($_GET["url"])) {
             $variaveis_url = explode('/', $_GET["url"]);
 
@@ -87,7 +87,6 @@ class Request
                 return ($valor === '0' or $valor);
             });
         }
-
     }
 
     /**
@@ -121,7 +120,6 @@ class Request
                 $this->request[$key] = $value;
             }
         }
-
     }
 
     /**
@@ -144,7 +142,6 @@ class Request
         if (count($sem_metodo) == 1) {
             $this->url = array_shift($sem_metodo);
         }
-
     }
 
     /**
@@ -153,8 +150,12 @@ class Request
      * configurados na chamada da rota]
      * @return array
      */
-    public function getQuery()
+    public function getQuery($atributo = false)
     {
+        if ($atributo) {
+
+            return $this->query[$atributo];
+        }
         return $this->query;
     }
 
@@ -168,14 +169,13 @@ class Request
     public function getRequest($exceto = [])
     {
         $request = $this->request;
-        
+
         if ($exceto) {
-            
-            
+
+
             foreach ($exceto as $valor) {
                 unset($request[$valor]);
             }
-            
         }
 
         return $request;
@@ -214,7 +214,6 @@ class Request
         }
 
         return false;
-
     }
 
     /**
@@ -225,7 +224,6 @@ class Request
     public function existeArquivo($nomelInput)
     {
         return $this->arquivo[$nomelInput]['name'] ? $this->arquivo[$nomelInput] : false;
-
     }
 
     /**
@@ -236,6 +234,6 @@ class Request
     public function getArquivo($nomeInput)
     {
         return $this->arquivo[$nomeInput];
-
     }
+
 }

@@ -2,6 +2,7 @@
 
 namespace Larapio\App\Controller;
 
+use Larapio\App\OrdenarBuscarPaginacao;
 use Larapio\Http\Response;
 use Larapio\Http\Request;
 use Larapio\App\Model\Ingrediente;
@@ -13,6 +14,8 @@ class IngredienteController
     private $request;
     private $ingrediente;
     private $sessao;
+    private $linksForm;
+    private $fop; 
 
     /**
      * ----------------------------------------------------------------------------------
@@ -27,6 +30,9 @@ class IngredienteController
         $this->ingrediente = new Ingrediente();
 
         $this->sessao = new Session();
+
+        $this->linksForm = new OrdenarBuscarPaginacao;
+        $this->fop = $this->linksForm->gerarLinksForms($this->request);
     }
 
     /**
@@ -39,6 +45,7 @@ class IngredienteController
     {
         $lista = $this->ingrediente->all();
         Response::set($lista, 'ingredientes');
+        Response::set($this->fop, 'fop');
         Response::view('ingrediente/index');
     }
 
@@ -52,23 +59,46 @@ class IngredienteController
         $lista = $this->ingrediente->getListaUnidadeMedida();
         Response::set($lista, 'unidade');
         Response::view('ingrediente/formulario');
-        
     }
 
     /**
      * ----------------------------------------------------------------------------------
      */
-    public function buscar()
+    public function buscarOrdernar()
     {
+        if ($this->request->getRequest()) {
 
-        $dados = array_map(function ($valor) {
-            return $valor == '' ? 0 : $valor;
-        }, $this->request->getRequest());
+            $this->linksForm->setBusca($this->request);
+        } else if ($this->request->getQuery()) {
 
-        $this->ingrediente->buscar($dados);
-        Response::set($dados, 'filtros');
+            $this->linksForm->setOrdenacao($this->request);
+        }
+
+        $dadosBusca = $this->linksForm->getBusca();
+        $dadosForm = $this->linksForm->getDadosForm();
+        $ordenacao = $this->linksForm->getOrdenacao();
+
+        $this->ingrediente->ordenar($ordenacao['coluna'], $ordenacao['order']);
+        $this->ingrediente->buscar($dadosBusca);
+        Response::set($dadosForm, 'filtros');
         $this->index();
     }
+
+    /**
+     * ----------------------------------------------------------------------------------
+     */
+//    public function ordenar($buscar = true)
+//    {
+//        if ($buscar) {
+//            $this->linksForm->setOrdenacao($this->request);
+//        }
+//        $ordenacao = $this->linksForm->getOrdenacao();
+//        $this->ingrediente->ordenar($ordenacao['coluna'], $ordenacao['order']);
+//
+//        if ($buscar) {
+//            $this->buscar(false);
+//        }
+//    }
 
     /**
      * ----------------------------------------------------------------------------------
@@ -169,4 +199,5 @@ class IngredienteController
         }
         return true;
     }
+
 }

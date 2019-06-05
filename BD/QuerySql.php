@@ -187,12 +187,12 @@ class QuerySql
 
         if (in_array($this->nome, self::OPERACOES)) {
             foreach ($argumentos as $argumento) {
-                
+
                 if (is_array($argumento[0])) {
                     $this->queryArray($argumento);
                     return true;
                 }
-                
+
                 $argumento = $this->verificarOperacao($argumento);
 
                 if (is_string($argumento)) {
@@ -355,9 +355,19 @@ class QuerySql
         $this->dados = [];
 
         if ($debug) {
-            echo "<p style='max-width: 50%; margin-left: 30px'>$sql</p>";
+            $debug = vsprintf(preg_replace('/(:)([0-9]+)/', '%s', $sql), $dados);
+            $debug = preg_replace('/([A-Z]{4,}[ ]?[A-Z]+|FROM)/', '<br>$1', $debug);
+            $debug = preg_replace('/([A-Z ]{2,})/', '<span style="color: #fbbe05">$1</span>', $debug);
+//            
+            echo "<div style='box-shadow: 4px 4px 10px rgba(0,0,0,0.4); background: #1e222f; max-width: 80%; margin: 30px; padding: 10px; border: 4px solid #ccc; border-radius: 8px'>"
+            . "<code style='color: #67fb6e;'>"
+            . $debug
+            . "</code>"
+            . "</div>";
+//            echo "<p style='max-width: 50%; margin-left: 30px'>$sql</p>";
         }
 
         return $this->bd->executar($sql, $ignoreFech, $dados);
     }
+
 }
