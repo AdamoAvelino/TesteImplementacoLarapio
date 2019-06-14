@@ -10,10 +10,10 @@ class Ingrediente extends Model
 
     private $colection = [];
     //Atributos da entidade Ingrediente
-    private $id;
-    private $nome;
-    private $quantidade;
-    private $unidade_medida;
+    public $id;
+    public $nome;
+    public $quantidade;
+    public $unidade_medida;
     private $listaUnidadeMedida;
     // Atributo que condiciona um filtro para um lista de montagem de colecao
     private $where = [['1', '=', '1']];
@@ -87,13 +87,13 @@ class Ingrediente extends Model
     {
         $direcao = $order ? 'DESC' : 'ASC';
         switch ($coluna) {
-            case 'id' : $ordenacao = 'i.id %s';
+            case 'order_id' : $ordenacao = 'i.id %s';
                 break;
-            case 'ingr' : $ordenacao = 'i.nome %s';
+            case 'order_nome' : $ordenacao = 'i.nome %s';
                 break;
-            case 'qtd' : $ordenacao = 'quantidade %s';
+            case 'order_quantidade' : $ordenacao = 'quantidade %s';
                 break;
-            case 'um' : $ordenacao = 'unidade_medida %s';
+            case 'order_unidade_medida' : $ordenacao = 'unidade_medida %s';
                 break;
             default : $ordenacao = 'i.id';
                 break;

@@ -42,38 +42,7 @@
             <hr>
             <h3 class='text-center'>Ingredientes</h3>
             {% if ingredientes %}
-                <table class="table table-hover table-striped table-sm shadow table-bordered">
-                    <thead class='thead-dark'>
-                        <tr>
-                            <th scope="col" width='5%'>
-                                <a href='/ingrediente/ordenacao/{{fop.form}}/id/{{fop.order}}'>Id</a>
-                            </th>
-                            <th scope="col">
-                                <a href='/ingrediente/ordenacao/{{fop.form}}/ingr/{{fop.order}}'>Nome</a>
-                            </th>
-                            <th scope="col" width='10%'>
-                                <a href='/ingrediente/ordenacao/{{fop.form}}/qtd/{{fop.order}}'>Quantidade</a>
-                            </th>
-                            <th scope="col" width='5%'>
-                                <a href='/ingrediente/ordenacao/{{fop.form}}/um/{{fop.order}}'>UM</a>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for ingrediente in ingredientes %}
-                            <tr>
-                                <th scope="row" class='text-center'>
-                                    <a href='/ingrediente/editar/{{ ingrediente.id }}'>
-                                        {{ ingrediente.id }}
-                                    </a>
-                                </th>
-                                <td>{{ ingrediente.nome }}</td>
-                                <td class='text-right'>{{ ingrediente.quantidade }}</td>
-                                <td>{{ ingrediente.unidade_medida }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                {{ montarGrid(fop, ingredientes) }}
             {% else %}
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     <strong>Ops!</strong> Não Há Nenhum Registro de Ingredientes
